@@ -1,11 +1,4 @@
-import {
-  View,
-  ImageBackground,
-  StyleSheet,
-  Image,
-  Dimensions,
-  Text,
-} from "react-native";
+import { View, ImageBackground, StyleSheet, Image, Text } from "react-native";
 
 const WelcomeScreen = (): JSX.Element => {
   return (
@@ -17,7 +10,7 @@ const WelcomeScreen = (): JSX.Element => {
       >
         <View style={styles.logoContainer}>
           <Image source={require("../../../assets/logo.png")} />
-          <Text style={styles.textLogo}>Done With Manga</Text>
+          <Text style={styles.textLogo}>Vends ton manga</Text>
         </View>
         <View style={styles.loginButton} />
         <View style={styles.registerButton} />
@@ -51,6 +44,7 @@ const styles = StyleSheet.create({
   },
   textLogo: {
     marginTop: -20,
+    marginLeft: 20,
     fontWeight: "bold",
     color: "#fff",
   },

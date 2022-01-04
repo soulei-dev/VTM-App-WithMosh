@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "doneWithManga",
-    "slug": "doneWithManga",
+    "name": "vendsTonManga",
+    "slug": "vendsTonManga",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
