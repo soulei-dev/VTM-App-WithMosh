@@ -1,4 +1,5 @@
 import { View, ImageBackground, StyleSheet, Image, Text } from "react-native";
+import CustomButton from "../../components/CustomButton/CustomButton";
 
 import colors from "../../config/colors";
 
@@ -14,8 +15,18 @@ const WelcomeScreen = (): JSX.Element => {
           <Image source={require("../../../assets/logo.png")} />
           <Text style={styles.textLogo}>Vends ton manga</Text>
         </View>
-        <View style={styles.loginButton} />
-        <View style={styles.registerButton} />
+        <CustomButton
+          label="Login"
+          buttonColor={colors.primary}
+          labelColor={colors.secondary}
+          onPress={() => console.log("Login")}
+        />
+        <CustomButton
+          label="Register"
+          buttonColor={colors.secondary}
+          labelColor={colors.black}
+          onPress={() => console.log("Register")}
+        />
       </ImageBackground>
     </>
   );
@@ -29,16 +40,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
-  loginButton: {
-    backgroundColor: colors.primary,
-    width: "100%",
-    height: 70,
-  },
-  registerButton: {
-    backgroundColor: colors.secondary,
-    width: "100%",
-    height: 70,
-  },
   logoContainer: {
     alignItems: "center",
     top: 50,
@@ -47,8 +48,13 @@ const styles = StyleSheet.create({
   textLogo: {
     marginTop: -20,
     marginLeft: 20,
+    fontSize: 30,
+    color: colors.primary,
+    backgroundColor: "white",
+    width: "100%",
+    textAlign: "center",
     fontWeight: "bold",
-    color: colors.secondary,
+    fontFamily: "Avenir",
   },
 });
 
