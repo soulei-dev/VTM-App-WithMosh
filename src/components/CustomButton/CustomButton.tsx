@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     width: "90%",
     height: 50,
-    marginBottom: 20,
+    marginVertical: 15,
   },
   label: {
     fontWeight: "bold",
