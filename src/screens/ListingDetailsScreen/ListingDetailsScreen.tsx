@@ -16,6 +16,7 @@ const ListingDetailsScreen = () => {
                 <AppText style={styles.price}>30 €</AppText>
                 <View style={styles.userContainer}>
                     <ListItem
+                        onPress={() => console.log("Pressed")}
                         title="Souleimane Kouygou"
                         subTitle="3 listings"
                         image={require("../../assets/148327.jpg")}
