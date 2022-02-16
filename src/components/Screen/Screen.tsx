@@ -12,6 +12,7 @@ const Screen = ({ children }: ScreenProps): JSX.Element => {
 
 const styles = StyleSheet.create({
     screen: {
+        flex: 1,
         paddingTop: Constants.statusBarHeight,
     },
 });
