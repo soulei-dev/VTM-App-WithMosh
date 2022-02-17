@@ -2,11 +2,11 @@ import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
-interface ScreenProps {
+interface CustomScreenProps {
     children: any;
 }
 
-const Screen = ({ children }: ScreenProps): JSX.Element => {
+const CustomScreen = ({ children }: CustomScreenProps): JSX.Element => {
     return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;
 };
 
@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         paddingTop: Constants.statusBarHeight,
+        height: "100%",
+        backgroundColor: "#F7F4F4",
     },
 });
 
-export default Screen;
+export default CustomScreen;

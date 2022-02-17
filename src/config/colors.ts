@@ -6,4 +6,6 @@ export default {
     light: '#ededed',
     danger: '#ff5252',
     white: '#fff',
-}
+    blueLight: "#83c5fc",
+    yellow: "#ffe66d",
+} 

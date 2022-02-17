@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FlatList, View } from "react-native";
-import Screen from "../../components/Screen/Screen";
+import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import ListItem from "../../components/ListItem/ListItem";
 import ListItemSeparator from "../../components/ListItemSeparator/ListItemSeparator";
 import ListItemDeleteAction from "../../components/ListItemDeleteAction/ListItemDeleteAction";
@@ -29,7 +29,7 @@ const MessagesScreen = (): JSX.Element => {
         );
     };
     return (
-        <Screen>
+        <CustomScreen>
             <FlatList
                 data={messages}
                 keyExtractor={(message) => message.id.toString()}
@@ -59,7 +59,7 @@ const MessagesScreen = (): JSX.Element => {
                     ]);
                 }}
             />
-        </Screen>
+        </CustomScreen>
     );
 };
 
