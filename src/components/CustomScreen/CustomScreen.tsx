@@ -4,10 +4,13 @@ import Constants from "expo-constants";
 
 interface CustomScreenProps {
     children: any;
+    style?: any;
 }
 
-const CustomScreen = ({ children }: CustomScreenProps): JSX.Element => {
-    return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;
+const CustomScreen = ({ children, style }: CustomScreenProps): JSX.Element => {
+    return (
+        <SafeAreaView style={[styles.screen, style]}>{children}</SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
