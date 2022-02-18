@@ -50,7 +50,7 @@ const ListingsScreen = (): JSX.Element => {
 const styles = StyleSheet.create({
     screen: {
         backgroundColor: "#F7F4F4",
-        padding: 15,
+        padding: 20,
     },
 });
 
