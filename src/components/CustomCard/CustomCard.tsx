@@ -32,7 +32,6 @@ const CustomCard = ({
 
 const styles = StyleSheet.create({
     card: {
-        width: 380,
         borderRadius: 15,
         backgroundColor: "white",
         marginBottom: 20,

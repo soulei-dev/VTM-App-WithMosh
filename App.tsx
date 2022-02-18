@@ -8,9 +8,10 @@ import AccountScreen from "./src/screens/AccountScreen/AccountScreen";
 import CustomIcon from "./src/components/CustomIcon/CustomIcon";
 import CustomScreen from "./src/components/CustomScreen/CustomScreen";
 import ListItem from "./src/components/ListItem/ListItem";
+import ListingsScreen from "./src/screens/ListingsScreen/ListingsScreen";
 
 const App = (): JSX.Element => {
-    return <AccountScreen />;
+    return <ListingsScreen />;
 };
 
 export default App;
