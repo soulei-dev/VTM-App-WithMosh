@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
 import colors from "../../config/colors";
-import AppText from "../AppText/AppText";
+import CustomText from "../CustomText/CustomText";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 interface ListItemProps {
@@ -28,11 +28,11 @@ const ListItem = ({
                     {IconComponent}
                     {image && <Image style={styles.image} source={image} />}
                     <View style={styles.detailsContainer}>
-                        <AppText style={styles.title}>{title}</AppText>
+                        <CustomText style={styles.title}>{title}</CustomText>
                         {subTitle && (
-                            <AppText style={styles.subTitle}>
+                            <CustomText style={styles.subTitle}>
                                 {subTitle}
-                            </AppText>
+                            </CustomText>
                         )}
                     </View>
                 </View>

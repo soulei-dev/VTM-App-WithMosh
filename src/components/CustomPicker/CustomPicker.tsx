@@ -20,13 +20,17 @@ import CustomPickerItem from "../CustomPickerItem/CustomPickerItem";
 interface CustomPickerProps {
     icon?: any;
     items: any;
+    onSelectedItem: any;
     placeholder: string;
+    selectedItem: any;
 }
 
 const CustomPicker = ({
     icon,
     items,
+    onSelectedItem,
     placeholder,
+    selectedItem,
 }: CustomPickerProps): JSX.Element => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     return (
@@ -41,7 +45,9 @@ const CustomPicker = ({
                             color={colors.medium}
                         />
                     )}
-                    <CustomText style={styles.text}>{placeholder}</CustomText>
+                    <CustomText style={styles.text}>
+                        {selectedItem ? selectedItem.label : placeholder}
+                    </CustomText>
                     {icon && (
                         <MaterialCommunityIcons
                             name="chevron-down"
@@ -63,7 +69,10 @@ const CustomPicker = ({
                         renderItem={({ item }) => (
                             <CustomPickerItem
                                 label={item.label}
-                                onPress={() => console.log(item)}
+                                onPress={() => {
+                                    setModalVisible(false);
+                                    onSelectedItem(item);
+                                }}
                             />
                         )}
                     />

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import WelcomeScreen from "./src/screens/WelcomeScreen/WelcomeScreen";
 import CustomCard from "./src/components/CustomCard/CustomCard";
 import { SafeAreaView, StyleSheet, Switch, Text, View } from "react-native";
@@ -19,9 +20,14 @@ const categories = [
 ];
 
 const App = (): JSX.Element => {
+    const [category, setCategory] = useState(categories[0]);
     return (
         <CustomScreen>
             <CustomPicker
+                selectedItem={category}
+                onSelectedItem={(item: any) => {
+                    setCategory(item);
+                }}
                 items={categories}
                 icon="apps"
                 placeholder="Category"
