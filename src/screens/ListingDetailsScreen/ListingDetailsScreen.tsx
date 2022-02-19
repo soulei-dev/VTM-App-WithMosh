@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
-import AppText from "../../components/AppText/AppText";
+import CustomText from "../../components/CustomText/CustomText";
 import ListItem from "../../components/ListItem/ListItem";
 import colors from "../../config/colors";
 
@@ -12,8 +12,10 @@ const ListingDetailsScreen = () => {
                 source={require("../../assets/image.jpeg")}
             />
             <View style={styles.details}>
-                <AppText style={styles.title}>One piece collection</AppText>
-                <AppText style={styles.price}>30 €</AppText>
+                <CustomText style={styles.title}>
+                    One piece collection
+                </CustomText>
+                <CustomText style={styles.price}>30 €</CustomText>
                 <View style={styles.userContainer}>
                     <ListItem
                         onPress={() => console.log("Pressed")}

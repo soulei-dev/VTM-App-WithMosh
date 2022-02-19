@@ -6,24 +6,27 @@ import {
     Platform,
     Modal,
     Button,
+    FlatList,
+    TouchableWithoutFeedback,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 import defaultStyles from "../../config/styles";
 import CustomText from "../CustomText/CustomText";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import CustomScreen from "../CustomScreen/CustomScreen";
+import CustomPickerItem from "../CustomPickerItem/CustomPickerItem";
 
 interface CustomPickerProps {
     icon?: any;
+    items: any;
     placeholder: string;
 }
 
 const CustomPicker = ({
     icon,
+    items,
     placeholder,
-    ...props
 }: CustomPickerProps): JSX.Element => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     return (
@@ -53,6 +56,16 @@ const CustomPicker = ({
                     <Button
                         title="Fermer"
                         onPress={() => setModalVisible(false)}
+                    />
+                    <FlatList
+                        data={items}
+                        keyExtractor={(item) => item.value.toString()}
+                        renderItem={({ item }) => (
+                            <CustomPickerItem
+                                label={item.label}
+                                onPress={() => console.log(item)}
+                            />
+                        )}
                     />
                 </CustomScreen>
             </Modal>

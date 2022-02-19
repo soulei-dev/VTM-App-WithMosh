@@ -12,10 +12,20 @@ import ListingsScreen from "./src/screens/ListingsScreen/ListingsScreen";
 import CustomInput from "./src/components/CustomInput/CustomInput";
 import CustomPicker from "./src/components/CustomPicker/CustomPicker";
 
+const categories = [
+    { label: "Collections", value: 1 },
+    { label: "Mangas", value: 2 },
+    { label: "Goodies", value: 3 },
+];
+
 const App = (): JSX.Element => {
     return (
         <CustomScreen>
-            <CustomPicker icon="apps" placeholder="Category" />
+            <CustomPicker
+                items={categories}
+                icon="apps"
+                placeholder="Category"
+            />
             <CustomInput icon="email" placeholder="Email" />
         </CustomScreen>
     );

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AppText from "../AppText/AppText";
+import CustomText from "../CustomText/CustomText";
 import colors from "../../config/colors";
 
 interface CustomTabsProps {
@@ -27,7 +27,7 @@ const CustomTabs = ({
                 />
             </View>
             <View style={styles.titleContainer}>
-                <AppText style={styles.title}>{title}</AppText>
+                <CustomText style={styles.title}>{title}</CustomText>
             </View>
         </View>
     );

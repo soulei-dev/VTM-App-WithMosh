@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, View, Image } from "react-native";
 import colors from "../../config/colors";
-import AppText from "../AppText/AppText";
+import CustomText from "../CustomText/CustomText";
 
 interface CustomCardProps {
     image: any;
@@ -20,8 +20,8 @@ const CustomCard = ({
         <View style={styles.card}>
             <Image source={image} style={styles.image} />
             <View style={styles.cardDetail}>
-                <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.price}>{`${price} €`}</AppText>
+                <CustomText style={styles.title}>{title}</CustomText>
+                <CustomText style={styles.price}>{`${price} €`}</CustomText>
                 <View style={styles.city}>
                     <Text style={styles.labelCity}>{city}</Text>
                 </View>
