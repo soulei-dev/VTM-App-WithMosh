@@ -1,10 +1,19 @@
-import React from "react";
-import { View, TextInput, StyleSheet, Platform } from "react-native";
+import React, { useState } from "react";
+import {
+    View,
+    TextInput,
+    StyleSheet,
+    Platform,
+    Modal,
+    Button,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 import defaultStyles from "../../config/styles";
 import CustomText from "../CustomText/CustomText";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import CustomScreen from "../CustomScreen/CustomScreen";
 
 interface CustomPickerProps {
     icon?: any;
@@ -16,25 +25,38 @@ const CustomPicker = ({
     placeholder,
     ...props
 }: CustomPickerProps): JSX.Element => {
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
     return (
-        <View style={styles.container}>
-            {icon && (
-                <MaterialCommunityIcons
-                    name={icon}
-                    size={20}
-                    style={styles.icon}
-                    color={colors.medium}
-                />
-            )}
-            <CustomText style={styles.text}>{placeholder}</CustomText>
-            {icon && (
-                <MaterialCommunityIcons
-                    name="chevron-down"
-                    size={20}
-                    color={colors.medium}
-                />
-            )}
-        </View>
+        <>
+            <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+                <View style={styles.container}>
+                    {icon && (
+                        <MaterialCommunityIcons
+                            name={icon}
+                            size={20}
+                            style={styles.icon}
+                            color={colors.medium}
+                        />
+                    )}
+                    <CustomText style={styles.text}>{placeholder}</CustomText>
+                    {icon && (
+                        <MaterialCommunityIcons
+                            name="chevron-down"
+                            size={20}
+                            color={colors.medium}
+                        />
+                    )}
+                </View>
+            </TouchableWithoutFeedback>
+            <Modal visible={modalVisible} animationType="slide">
+                <CustomScreen>
+                    <Button
+                        title="Fermer"
+                        onPress={() => setModalVisible(false)}
+                    />
+                </CustomScreen>
+            </Modal>
+        </>
     );
 };
 
