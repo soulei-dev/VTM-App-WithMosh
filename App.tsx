@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import WelcomeScreen from "./src/screens/WelcomeScreen/WelcomeScreen";
 import CustomCard from "./src/components/CustomCard/CustomCard";
 import { SafeAreaView, StyleSheet, Switch, Text, View } from "react-native";
@@ -12,29 +12,10 @@ import ListItem from "./src/components/ListItem/ListItem";
 import ListingsScreen from "./src/screens/ListingsScreen/ListingsScreen";
 import CustomInput from "./src/components/CustomInput/CustomInput";
 import CustomPicker from "./src/components/CustomPicker/CustomPicker";
+import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
 
-const categories = [
-    { label: "Collections", value: 1 },
-    { label: "Mangas", value: 2 },
-    { label: "Goodies", value: 3 },
-];
-
-const App = (): JSX.Element => {
-    const [category, setCategory] = useState(categories[0]);
-    return (
-        <CustomScreen>
-            <CustomPicker
-                selectedItem={category}
-                onSelectedItem={(item: any) => {
-                    setCategory(item);
-                }}
-                items={categories}
-                icon="apps"
-                placeholder="Category"
-            />
-            <CustomInput icon="email" placeholder="Email" />
-        </CustomScreen>
-    );
+const App: FC = () => {
+    return <LoginScreen />;
 };
 
 export default App;

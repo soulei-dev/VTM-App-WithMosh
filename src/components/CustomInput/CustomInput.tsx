@@ -1,5 +1,11 @@
 import React, { FC } from "react";
-import { View, TextInput, StyleSheet, Platform } from "react-native";
+import {
+    View,
+    TextInput,
+    StyleSheet,
+    Platform,
+    TextInputProps,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
@@ -7,8 +13,7 @@ import defaultStyles from "../../config/styles";
 
 type Props = {
     icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
-    placeholder?: string;
-};
+} & TextInputProps;
 
 const CustomInput: FC<Props> = ({ icon, ...props }) => {
     return (

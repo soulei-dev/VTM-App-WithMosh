@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 50,
-        width: "90%",
-        height: 50,
+        width: "100%",
+        height: 60,
         marginVertical: 15,
     },
     label: {
         fontWeight: "bold",
-        fontSize: 15,
+        fontSize: 20,
         textTransform: "uppercase",
     },
 });
