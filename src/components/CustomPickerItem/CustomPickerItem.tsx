@@ -1,16 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import CustomText from "../CustomText/CustomText";
 
-interface CustomPickerItem {
+type Props = {
     label: string;
     onPress: () => void;
-}
+};
 
-const CustomPickerItem = ({
-    label,
-    onPress,
-}: CustomPickerItem): JSX.Element => {
+const CustomPickerItem: FC<Props> = ({ label, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <CustomText style={styles.text}>{label}</CustomText>

@@ -1,22 +1,17 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { FC } from "react";
+import { StyleSheet, View, Text, ColorValue } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CustomText from "../CustomText/CustomText";
 import colors from "../../config/colors";
 
-interface CustomTabsProps {
-    iconName: any;
-    colorIcon: any;
-    bgColorIcon: any;
+type Props = {
+    iconName: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+    colorIcon: ColorValue;
+    bgColorIcon: ColorValue;
     title: string;
-}
+};
 
-const CustomTabs = ({
-    iconName,
-    colorIcon,
-    bgColorIcon,
-    title,
-}: CustomTabsProps): JSX.Element => {
+const CustomTabs: FC<Props> = ({ iconName, colorIcon, bgColorIcon, title }) => {
     return (
         <View style={styles.container}>
             <View style={[styles.icon, { backgroundColor: bgColorIcon }]}>

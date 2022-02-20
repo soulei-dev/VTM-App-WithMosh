@@ -1,16 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, TextInput, StyleSheet, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 import defaultStyles from "../../config/styles";
 
-interface CustomInputProps {
-    icon?: any;
+type Props = {
+    icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
     placeholder?: string;
-}
+};
 
-const CustomInput = ({ icon, ...props }: CustomInputProps): JSX.Element => {
+const CustomInput: FC<Props> = ({ icon, ...props }) => {
     return (
         <View style={styles.container}>
             {icon && (

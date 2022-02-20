@@ -1,20 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
 import { View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-interface CustomIconProps {
+type Props = {
     name: any;
     size?: number;
     backgroundColor?: string;
     iconColor?: string;
-}
+};
 
-const CustomIcon = ({
+const CustomIcon: FC<Props> = ({
     name,
     size = 40,
     backgroundColor = "#000",
     iconColor = "#fff",
-}: CustomIconProps): JSX.Element => {
+}) => {
     return (
         <View
             style={{

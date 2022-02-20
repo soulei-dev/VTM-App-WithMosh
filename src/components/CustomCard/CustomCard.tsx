@@ -1,21 +1,22 @@
-import React from "react";
-import { Text, StyleSheet, View, Image } from "react-native";
+import React, { FC } from "react";
+import {
+    Text,
+    StyleSheet,
+    View,
+    Image,
+    ImageSourcePropType,
+} from "react-native";
 import colors from "../../config/colors";
 import CustomText from "../CustomText/CustomText";
 
-interface CustomCardProps {
-    image: any;
+type Props = {
+    image: ImageSourcePropType;
     title: string;
     price: number;
     city: string;
-}
+};
 
-const CustomCard = ({
-    image,
-    title,
-    price,
-    city,
-}: CustomCardProps): JSX.Element => {
+const CustomCard: FC<Props> = ({ image, title, price, city }) => {
     return (
         <View style={styles.card}>
             <Image source={image} style={styles.image} />

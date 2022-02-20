@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import {
     View,
     TextInput,
@@ -16,22 +16,23 @@ import defaultStyles from "../../config/styles";
 import CustomText from "../CustomText/CustomText";
 import CustomScreen from "../CustomScreen/CustomScreen";
 import CustomPickerItem from "../CustomPickerItem/CustomPickerItem";
+import { SelectedItemState } from "../../typings/SelectedItemState";
 
-interface CustomPickerProps {
-    icon?: any;
+type Props = {
+    icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
     items: any;
-    onSelectedItem: any;
+    onSelectedItem: (item: any) => void;
     placeholder: string;
-    selectedItem: any;
-}
+    selectedItem: SelectedItemState;
+};
 
-const CustomPicker = ({
+const CustomPicker: FC<Props> = ({
     icon,
     items,
     onSelectedItem,
     placeholder,
     selectedItem,
-}: CustomPickerProps): JSX.Element => {
+}) => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     return (
         <>

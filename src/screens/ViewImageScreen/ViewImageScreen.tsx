@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 
-const ViewImageScreen = (): JSX.Element => {
+const ViewImageScreen: FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.closeIcon}>

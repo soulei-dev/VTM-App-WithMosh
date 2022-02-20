@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import CustomCard from "../../components/CustomCard/CustomCard";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
@@ -27,7 +27,7 @@ const listings = [
     },
 ];
 
-const ListingsScreen = (): JSX.Element => {
+const ListingsScreen: FC = () => {
     return (
         <CustomScreen style={styles.screen}>
             <FlatList

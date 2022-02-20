@@ -1,15 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import colors from "../../config/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-interface ListItemDeleteActionProps {
+type Props = {
     onPress: () => void;
-}
+};
 
-const ListItemDeleteAction = ({
-    onPress,
-}: ListItemDeleteActionProps): JSX.Element => {
+const ListItemDeleteAction: FC<Props> = ({ onPress }) => {
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.deleteAction}>

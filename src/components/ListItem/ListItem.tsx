@@ -1,26 +1,36 @@
-import React from "react";
-import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
+import React, { FC } from "react";
+import {
+    StyleSheet,
+    View,
+    Image,
+    TouchableHighlight,
+    ImageSourcePropType,
+    Animated,
+} from "react-native";
 import colors from "../../config/colors";
 import CustomText from "../CustomText/CustomText";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
-interface ListItemProps {
+type Props = {
     title: string;
     subTitle?: string;
-    image?: any;
+    image?: ImageSourcePropType;
     onPress?: () => void;
-    renderRightActions?: any;
+    renderRightActions?: (
+        progressAnimatedValue: Animated.Value | Animated.AnimatedInterpolation,
+        dragAnimatedValue: Animated.AnimatedInterpolation
+    ) => React.ReactNode;
     IconComponent?: JSX.Element;
-}
+};
 
-const ListItem = ({
+const ListItem: FC<Props> = ({
     title,
     subTitle,
     image,
     onPress,
     renderRightActions,
     IconComponent,
-}: ListItemProps): JSX.Element => {
+}) => {
     return (
         <Swipeable renderRightActions={renderRightActions}>
             <TouchableHighlight underlayColor={colors.light} onPress={onPress}>

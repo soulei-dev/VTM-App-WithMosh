@@ -1,14 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 import { Text } from "react-native";
 
 import defaultStyles from "../../config/styles";
 
-interface CustomTextProps {
+type Props = {
     children: string | number;
     style?: object;
-}
+};
 
-const CustomText = ({ children, style }: CustomTextProps): JSX.Element => {
+const CustomText: FC<Props> = ({ children, style }) => {
     return <Text style={[defaultStyles.text, style]}>{children}</Text>;
 };
 

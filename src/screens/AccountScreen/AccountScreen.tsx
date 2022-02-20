@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import CustomTabs from "../../components/CustomTabs/CustomTabs";
 import ListItem from "../../components/ListItem/ListItem";
@@ -24,7 +24,7 @@ const menuItems = [
     },
 ];
 
-const AccountScreen = (): JSX.Element => {
+const AccountScreen: FC = () => {
     return (
         <CustomScreen>
             <View style={styles.container}>

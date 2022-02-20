@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import CustomText from "../../components/CustomText/CustomText";
 import ListItem from "../../components/ListItem/ListItem";
 import colors from "../../config/colors";
 
-const ListingDetailsScreen = () => {
+const ListingDetailsScreen: FC = () => {
     return (
         <View>
             <Image

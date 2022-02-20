@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { FlatList, View } from "react-native";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import ListItem from "../../components/ListItem/ListItem";
@@ -20,7 +20,7 @@ let initialMessages = [
     },
 ];
 
-const MessagesScreen = (): JSX.Element => {
+const MessagesScreen: FC = () => {
     const [messages, setMessages] = useState<any>(initialMessages);
     const [refreshing, setRefreshing] = useState<boolean>(false);
     const handleDelete = (message: any) => {
