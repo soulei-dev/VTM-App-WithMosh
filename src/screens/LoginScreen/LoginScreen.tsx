@@ -28,28 +28,42 @@ const LoginScreen: FC = () => {
                 onSubmit={(values) => console.log(values)}
                 validationSchema={validationSchema}
             >
-                {({ handleChange, handleSubmit, errors }) => (
+                {({
+                    handleChange,
+                    handleSubmit,
+                    errors,
+                    setFieldTouched,
+                    touched,
+                }) => (
                     <>
                         <CustomInput
                             textContentType="emailAddress"
                             keyboardType="email-address"
+                            onBlur={() => setFieldTouched("email")}
                             onChangeText={handleChange("email")}
                             autoCorrect={false}
                             autoCapitalize="none"
                             placeholder="Email"
                             icon="email"
                         />
-                        <CustomErrorMessage error={errors.email} />
+                        <CustomErrorMessage
+                            error={errors.email}
+                            visible={touched.email}
+                        />
                         <CustomInput
                             textContentType="password"
                             autoCorrect={false}
+                            onBlur={() => setFieldTouched("password")}
                             onChangeText={handleChange("password")}
                             autoCapitalize="none"
                             placeholder="Mot de passe"
                             secureTextEntry
                             icon="lock"
                         />
-                        <CustomErrorMessage error={errors.password} />
+                        <CustomErrorMessage
+                            error={errors.password}
+                            visible={touched.password}
+                        />
                         <CustomButton
                             label="Connexion"
                             onPress={handleSubmit}

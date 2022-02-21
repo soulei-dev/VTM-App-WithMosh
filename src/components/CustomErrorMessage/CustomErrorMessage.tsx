@@ -4,10 +4,11 @@ import CustomText from "../CustomText/CustomText";
 
 type Props = {
     error?: string;
+    visible?: any;
 };
 
-const CustomErrorMessage: FC<Props> = ({ error }) => {
-    if (!error) return null;
+const CustomErrorMessage: FC<Props> = ({ error, visible }) => {
+    if (!visible || !error) return null;
     return <CustomText style={styles.error}>{error}</CustomText>;
 };
 
