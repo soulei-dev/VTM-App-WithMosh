@@ -1,14 +1,13 @@
 import React, { FC } from "react";
 import { Image, StyleSheet } from "react-native";
-import CustomButton from "../../components/CustomButton/CustomButton";
-import CustomInput from "../../components/CustomInput/CustomInput";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
-import { Formik } from "formik";
 import * as Yup from "yup";
 
-import colors from "../../config/colors";
-import CustomText from "../../components/CustomText/CustomText";
-import CustomErrorMessage from "../../components/CustomErrorMessage/CustomErrorMessage";
+import {
+    CustomForm,
+    CustomFormField,
+    CustomSubmitButton,
+} from "../../components/forms";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -23,56 +22,31 @@ const LoginScreen: FC = () => {
                 source={require("../../assets/logo.png")}
             />
 
-            <Formik
+            <CustomForm
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => console.log(values)}
                 validationSchema={validationSchema}
             >
-                {({
-                    handleChange,
-                    handleSubmit,
-                    errors,
-                    setFieldTouched,
-                    touched,
-                }) => (
-                    <>
-                        <CustomInput
-                            textContentType="emailAddress"
-                            keyboardType="email-address"
-                            onBlur={() => setFieldTouched("email")}
-                            onChangeText={handleChange("email")}
-                            autoCorrect={false}
-                            autoCapitalize="none"
-                            placeholder="Email"
-                            icon="email"
-                        />
-                        <CustomErrorMessage
-                            error={errors.email}
-                            visible={touched.email}
-                        />
-                        <CustomInput
-                            textContentType="password"
-                            autoCorrect={false}
-                            onBlur={() => setFieldTouched("password")}
-                            onChangeText={handleChange("password")}
-                            autoCapitalize="none"
-                            placeholder="Mot de passe"
-                            secureTextEntry
-                            icon="lock"
-                        />
-                        <CustomErrorMessage
-                            error={errors.password}
-                            visible={touched.password}
-                        />
-                        <CustomButton
-                            label="Connexion"
-                            onPress={handleSubmit}
-                            buttonColor={colors.primary}
-                            labelColor={colors.white}
-                        />
-                    </>
-                )}
-            </Formik>
+                <CustomFormField
+                    textContentType="emailAddress"
+                    keyboardType="email-address"
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    placeholder="Email"
+                    name="email"
+                    icon="email"
+                />
+                <CustomFormField
+                    textContentType="password"
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    placeholder="Mot de passe"
+                    secureTextEntry
+                    name="password"
+                    icon="lock"
+                />
+                <CustomSubmitButton title="Connexion" />
+            </CustomForm>
         </CustomScreen>
     );
 };

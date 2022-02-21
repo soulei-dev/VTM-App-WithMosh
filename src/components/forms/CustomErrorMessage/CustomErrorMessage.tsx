@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
-import CustomText from "../CustomText/CustomText";
+import CustomText from "../../CustomText/CustomText";
 
 type Props = {
     error?: string;

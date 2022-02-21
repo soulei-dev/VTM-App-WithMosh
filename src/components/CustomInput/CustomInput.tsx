@@ -11,11 +11,11 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 import defaultStyles from "../../config/styles";
 
-type Props = {
+export type CustomInputProps = {
     icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
 } & TextInputProps;
 
-const CustomInput: FC<Props> = ({ icon, ...props }) => {
+const CustomInput: FC<CustomInputProps> = ({ icon, ...props }) => {
     return (
         <View style={styles.container}>
             {icon && (
