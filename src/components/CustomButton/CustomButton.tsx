@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 50,
         width: "100%",
-        height: 60,
+        height: 50,
         marginVertical: 15,
     },
     label: {

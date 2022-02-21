@@ -3,10 +3,7 @@ import { Formik } from "formik";
 
 type Props = {
     onSubmit: (value: any) => void;
-    initialValues: {
-        email: string;
-        password: string;
-    };
+    initialValues: any;
     validationSchema: any;
     children: React.ReactNode;
 };
