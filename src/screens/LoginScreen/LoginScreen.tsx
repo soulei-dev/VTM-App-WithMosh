@@ -4,8 +4,16 @@ import CustomButton from "../../components/CustomButton/CustomButton";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 import colors from "../../config/colors";
+import CustomText from "../../components/CustomText/CustomText";
+import CustomErrorMessage from "../../components/CustomErrorMessage/CustomErrorMessage";
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string().required().email().label("Email"),
+    password: Yup.string().required().min(4).label("Password"),
+});
 
 const LoginScreen: FC = () => {
     return (
@@ -18,8 +26,9 @@ const LoginScreen: FC = () => {
             <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => console.log(values)}
+                validationSchema={validationSchema}
             >
-                {({ handleChange, handleSubmit }) => (
+                {({ handleChange, handleSubmit, errors }) => (
                     <>
                         <CustomInput
                             textContentType="emailAddress"
@@ -30,6 +39,7 @@ const LoginScreen: FC = () => {
                             placeholder="Email"
                             icon="email"
                         />
+                        <CustomErrorMessage error={errors.email} />
                         <CustomInput
                             textContentType="password"
                             autoCorrect={false}
@@ -39,6 +49,7 @@ const LoginScreen: FC = () => {
                             secureTextEntry
                             icon="lock"
                         />
+                        <CustomErrorMessage error={errors.password} />
                         <CustomButton
                             label="Connexion"
                             onPress={handleSubmit}

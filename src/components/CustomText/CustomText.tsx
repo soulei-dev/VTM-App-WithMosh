@@ -4,7 +4,7 @@ import { Text } from "react-native";
 import defaultStyles from "../../config/styles";
 
 type Props = {
-    children: string | number;
+    children: React.ReactNode;
     style?: object;
 };
 
