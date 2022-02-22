@@ -7,9 +7,10 @@ type Props = {
     name: string;
     items: any;
     placeholder: string;
+    width?: string | number;
 };
 
-const CustomFormPicker: FC<Props> = ({ items, placeholder, name }) => {
+const CustomFormPicker: FC<Props> = ({ items, placeholder, name, width }) => {
     const { errors, touched, values, setFieldValue } = useFormikContext();
     return (
         <>
@@ -19,6 +20,7 @@ const CustomFormPicker: FC<Props> = ({ items, placeholder, name }) => {
                 selectedItem={values[name]}
                 placeholder={placeholder}
                 onSelectedItem={(item: any) => setFieldValue(name, item)}
+                width={width}
             />
             <CustomErrorMessage error={errors[name]} visible={touched[name]} />
         </>

@@ -26,7 +26,7 @@ import ListItemSeparator from "./src/components/ListItemSeparator/ListItemSepara
 import ListItemDeleteAction from "./src/components/ListItemDeleteAction/ListItemDeleteAction";
 
 const App: FC = () => {
-    return <MessagesScreen />;
+    return <ListingEditScreen />;
 };
 
 export default App;

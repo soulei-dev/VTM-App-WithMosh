@@ -47,11 +47,13 @@ const ListingEditScreen: FC = () => {
                     keyboardType="numeric"
                     placeholder="Prix"
                     maxLength={8}
+                    width={120}
                 />
                 <Picker
                     name="category"
                     items={categories}
                     placeholder="Category"
+                    width="50%"
                 />
                 <FormField
                     name="description"

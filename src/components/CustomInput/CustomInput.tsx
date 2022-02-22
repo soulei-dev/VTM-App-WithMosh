@@ -13,11 +13,16 @@ import defaultStyles from "../../config/styles";
 
 export type CustomInputProps = {
     icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+    width?: string | number;
 } & TextInputProps;
 
-const CustomInput: FC<CustomInputProps> = ({ icon, ...props }) => {
+const CustomInput: FC<CustomInputProps> = ({
+    icon,
+    width = "100%",
+    ...props
+}) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
             {icon && (
                 <MaterialCommunityIcons
                     name={icon}
@@ -37,7 +42,6 @@ const CustomInput: FC<CustomInputProps> = ({ icon, ...props }) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: "100%",
         borderRadius: 25,
         flexDirection: "row",
         backgroundColor: "#F7F4F4",

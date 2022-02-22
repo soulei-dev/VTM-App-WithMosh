@@ -7,15 +7,17 @@ import { TextInputProps } from "react-native";
 
 type Props = {
     name: string;
+    width?: string | number;
 } & TextInputProps &
     CustomInputProps;
 
-const CustomFormField: FC<Props> = ({ name, ...props }) => {
+const CustomFormField: FC<Props> = ({ name, width, ...props }) => {
     const { setFieldTouched, handleChange, errors, touched } =
         useFormikContext();
     return (
         <>
             <CustomInput
+                width={width}
                 onBlur={() => setFieldTouched(name)}
                 onChangeText={handleChange(name)}
                 {...props}

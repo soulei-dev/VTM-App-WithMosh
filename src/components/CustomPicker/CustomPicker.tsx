@@ -24,6 +24,7 @@ type Props = {
     onSelectedItem: any;
     placeholder: string;
     selectedItem: any;
+    width?: string | number;
 };
 
 const CustomPicker: FC<Props> = ({
@@ -32,12 +33,13 @@ const CustomPicker: FC<Props> = ({
     onSelectedItem,
     placeholder,
     selectedItem,
+    width = "100%",
 }) => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     return (
         <>
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-                <View style={styles.container}>
+                <View style={[styles.container, { width }]}>
                     {icon && (
                         <MaterialCommunityIcons
                             name={icon}
@@ -91,7 +93,6 @@ const CustomPicker: FC<Props> = ({
 
 const styles = StyleSheet.create({
     container: {
-        width: "100%",
         borderRadius: 25,
         flexDirection: "row",
         backgroundColor: "#F7F4F4",
