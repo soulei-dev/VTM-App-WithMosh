@@ -26,7 +26,11 @@ const CustomInput: FC<CustomInputProps> = ({ icon, ...props }) => {
                     color={colors.medium}
                 />
             )}
-            <TextInput style={defaultStyles.text} {...props} />
+            <TextInput
+                placeholderTextColor={colors.grayLight}
+                style={defaultStyles.text}
+                {...props}
+            />
         </View>
     );
 };

@@ -9,5 +9,6 @@ export default {
     blueLight: "#83c5fc",
     yellow: "#ffe66d",
     medium: "#757575",
-    dark: "#0c0c0c"
+    dark: "#0c0c0c",
+    grayLight: "#c6c6c6"
 } 

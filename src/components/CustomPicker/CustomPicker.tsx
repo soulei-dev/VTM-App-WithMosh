@@ -46,9 +46,15 @@ const CustomPicker: FC<Props> = ({
                             color={colors.medium}
                         />
                     )}
-                    <CustomText style={styles.text}>
-                        {selectedItem ? selectedItem.label : placeholder}
-                    </CustomText>
+                    {selectedItem ? (
+                        <CustomText style={styles.text}>
+                            {selectedItem.label}
+                        </CustomText>
+                    ) : (
+                        <CustomText style={styles.placeholder}>
+                            {placeholder}
+                        </CustomText>
+                    )}
                     {icon && (
                         <MaterialCommunityIcons
                             name="chevron-down"
@@ -96,6 +102,10 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     text: {
+        flex: 1,
+    },
+    placeholder: {
+        color: colors.grayLight,
         flex: 1,
     },
 });
