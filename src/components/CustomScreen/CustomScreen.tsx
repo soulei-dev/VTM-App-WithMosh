@@ -10,7 +10,7 @@ type Props = {
 const CustomScreen: FC<Props> = ({ children, style }) => {
     return (
         <SafeAreaView style={[styles.screen, style]}>
-            <View style={style}>{children}</View>
+            <View style={[styles.view, style]}>{children}</View>
         </SafeAreaView>
     );
 };
@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: Constants.statusBarHeight,
         height: "100%",
+    },
+    view: {
+        flex: 1,
     },
 });
 

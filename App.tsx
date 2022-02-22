@@ -25,34 +25,8 @@ import ListingEditScreen from "./src/screens/ListingEditScreen/ListingEditScreen
 import ListItemSeparator from "./src/components/ListItemSeparator/ListItemSeparator";
 import ListItemDeleteAction from "./src/components/ListItemDeleteAction/ListItemDeleteAction";
 
-const items = [
-    { title: "T1", subtitle: "D1", image: require("./src/assets/148327.jpg") },
-    { title: "T2", subtitle: "D2", image: require("./src/assets/219857.png") },
-];
-
 const App: FC = () => {
-    return (
-        <CustomScreen>
-            <FlatList
-                data={items}
-                keyExtractor={(item) => item.title}
-                renderItem={({ item }) => (
-                    <ListItem
-                        showChevron
-                        title={item.title}
-                        subTitle={item.subtitle}
-                        image={item.image}
-                        renderRightActions={() => (
-                            <ListItemDeleteAction
-                                onPress={() => console.log(item)}
-                            />
-                        )}
-                    />
-                )}
-                ItemSeparatorComponent={ListItemSeparator}
-            />
-        </CustomScreen>
-    );
+    return <MessagesScreen />;
 };
 
 export default App;

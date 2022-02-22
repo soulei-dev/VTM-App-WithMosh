@@ -43,30 +43,27 @@ const ListItem: FC<Props> = ({
                     onPress={onPress}
                 >
                     <View style={styles.container}>
-                        <View style={styles.content}>
-                            {IconComponent}
-                            {image && (
-                                <Image style={styles.image} source={image} />
-                            )}
-                            <View style={styles.detailsContainer}>
-                                <CustomText style={styles.title}>
-                                    {title}
+                        {IconComponent}
+                        {image && <Image style={styles.image} source={image} />}
+                        <View style={styles.detailsContainer}>
+                            <CustomText numberOfLines={1} style={styles.title}>
+                                {title}
+                            </CustomText>
+                            {subTitle && (
+                                <CustomText
+                                    numberOfLines={1}
+                                    style={styles.subTitle}
+                                >
+                                    {subTitle}
                                 </CustomText>
-                                {subTitle && (
-                                    <CustomText style={styles.subTitle}>
-                                        {subTitle}
-                                    </CustomText>
-                                )}
-                            </View>
+                            )}
                         </View>
                         {showChevron ? (
-                            <View style={styles.chevronIcon}>
-                                <MaterialCommunityIcons
-                                    name="chevron-right"
-                                    color={colors.gray}
-                                    size={25}
-                                />
-                            </View>
+                            <MaterialCommunityIcons
+                                name="chevron-right"
+                                color={colors.gray}
+                                size={25}
+                            />
                         ) : null}
                     </View>
                 </TouchableHighlight>
@@ -77,13 +74,10 @@ const ListItem: FC<Props> = ({
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: "space-between",
+        alignItems: "center",
         flexDirection: "row",
         padding: 15,
         backgroundColor: colors.white,
-    },
-    content: {
-        flexDirection: "row",
     },
     image: {
         width: 70,
@@ -97,6 +91,7 @@ const styles = StyleSheet.create({
         color: colors.gray,
     },
     detailsContainer: {
+        flex: 1,
         justifyContent: "center",
         marginLeft: 10,
     },

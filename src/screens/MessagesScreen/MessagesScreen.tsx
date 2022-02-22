@@ -35,6 +35,7 @@ const MessagesScreen: FC = () => {
                 keyExtractor={(message) => message.id.toString()}
                 renderItem={({ item }) => (
                     <ListItem
+                        showChevron
                         title={item.title}
                         subTitle={item.description}
                         image={item.image}
