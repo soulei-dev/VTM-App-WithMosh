@@ -21,9 +21,9 @@ import { SelectedItemState } from "../../typings/SelectedItemState";
 type Props = {
     icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
     items: any;
-    onSelectedItem: (item: any) => void;
+    onSelectedItem: any;
     placeholder: string;
-    selectedItem: SelectedItemState;
+    selectedItem: any;
 };
 
 const CustomPicker: FC<Props> = ({

@@ -14,9 +14,10 @@ import CustomInput from "./src/components/CustomInput/CustomInput";
 import CustomPicker from "./src/components/CustomPicker/CustomPicker";
 import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
 import RegisterScreen from "./src/screens/RegisterScreen/RegisterScreen";
+import ListingEditScreen from "./src/screens/ListingEditScreen/ListingEditScreen";
 
 const App: FC = () => {
-    return <RegisterScreen />;
+    return <ListingEditScreen />;
 };
 
 export default App;
