@@ -8,6 +8,7 @@ import {
     CustomSubmitButton,
 } from "../../components/forms";
 import * as Yup from "yup";
+import CustomCategoryPickerItem from "../../components/CustomCategoryPickerItem/CustomCategoryPickerItem";
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required().min(1).label("Title"),
@@ -17,9 +18,20 @@ const validationSchema = Yup.object().shape({
 });
 
 const categories = [
-    { label: "Mangas", value: 1 },
-    { label: "Collections", value: 2 },
-    { label: "Goodies", value: 3 },
+    { label: "Mangas", value: 1, backgroundColor: "#eaa6a6", icon: "apps" },
+    {
+        label: "Collections",
+        value: 2,
+        backgroundColor: "#a392e8",
+        icon: "apps",
+    },
+    { label: "Goodies", value: 3, backgroundColor: "#92e89d", icon: "apps" },
+    { label: "Category", value: 4, backgroundColor: "#dc92e8", icon: "apps" },
+    { label: "Category", value: 5, backgroundColor: "#e8e092", icon: "apps" },
+    { label: "Category", value: 6, backgroundColor: "#92e5e8", icon: "apps" },
+    { label: "Category", value: 7, backgroundColor: "#e8cf92", icon: "apps" },
+    { label: "Category", value: 8, backgroundColor: "#92e89d", icon: "apps" },
+    { label: "Category", value: 9, backgroundColor: "#92e89d", icon: "apps" },
 ];
 
 const ListingEditScreen: FC = () => {
@@ -50,6 +62,8 @@ const ListingEditScreen: FC = () => {
                     width={120}
                 />
                 <Picker
+                    numberOfColumns={3}
+                    CustomPickerItemComponent={CustomCategoryPickerItem}
                     name="category"
                     items={categories}
                     placeholder="Category"

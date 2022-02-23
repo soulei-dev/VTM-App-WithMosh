@@ -22,6 +22,8 @@ type Props = {
     icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
     items: any;
     onSelectedItem: any;
+    CustomPickerItemComponent: any;
+    numberOfColumns: number;
     placeholder: string;
     selectedItem: any;
     width?: string | number;
@@ -31,6 +33,8 @@ const CustomPicker: FC<Props> = ({
     icon,
     items,
     onSelectedItem,
+    CustomPickerItemComponent = CustomPickerItem,
+    numberOfColumns = 1,
     placeholder,
     selectedItem,
     width = "100%",
@@ -74,9 +78,11 @@ const CustomPicker: FC<Props> = ({
                     />
                     <FlatList
                         data={items}
+                        numColumns={numberOfColumns}
                         keyExtractor={(item) => item.value.toString()}
                         renderItem={({ item }) => (
-                            <CustomPickerItem
+                            <CustomPickerItemComponent
+                                item={item}
                                 label={item.label}
                                 onPress={() => {
                                     setModalVisible(false);
