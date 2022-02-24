@@ -2,12 +2,14 @@ import React, { FC, useEffect, useState } from "react";
 import WelcomeScreen from "./src/screens/WelcomeScreen/WelcomeScreen";
 import CustomCard from "./src/components/CustomCard/CustomCard";
 import {
+    Button,
     FlatList,
     SafeAreaView,
     StyleSheet,
     Switch,
     Text,
     View,
+    Image,
 } from "react-native";
 import ListingDetailsScreen from "./src/screens/ListingDetailsScreen/ListingDetailsScreen";
 import ViewImageScreen from "./src/screens/ViewImageScreen/ViewImageScreen";
@@ -27,6 +29,7 @@ import ListItemDeleteAction from "./src/components/ListItemDeleteAction/ListItem
 import * as ImagePicker from "expo-image-picker";
 
 const App: FC = () => {
+    const [imageUri, setImageUri] = useState<any>();
     const requestPermission = async () => {
         const { granted } =
             await ImagePicker.requestCameraRollPermissionsAsync();
@@ -38,7 +41,30 @@ const App: FC = () => {
     useEffect(() => {
         requestPermission();
     }, []);
-    return <CustomScreen></CustomScreen>;
+
+    const selectedImage = async () => {
+        try {
+            const result = await ImagePicker.launchImageLibraryAsync();
+            if (!result.cancelled) {
+                setImageUri(result.uri);
+            }
+        } catch (error) {
+            console.log("Error sending ", error);
+        }
+    };
+
+    return (
+        <CustomScreen>
+            <Button title="Select image" onPress={selectedImage} />
+            <Image
+                source={{ uri: imageUri }}
+                style={{
+                    width: 200,
+                    height: 200,
+                }}
+            />
+        </CustomScreen>
+    );
 };
 
 export default App;
