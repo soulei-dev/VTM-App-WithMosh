@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import WelcomeScreen from "./src/screens/WelcomeScreen/WelcomeScreen";
 import CustomCard from "./src/components/CustomCard/CustomCard";
 import {
@@ -24,9 +24,21 @@ import RegisterScreen from "./src/screens/RegisterScreen/RegisterScreen";
 import ListingEditScreen from "./src/screens/ListingEditScreen/ListingEditScreen";
 import ListItemSeparator from "./src/components/ListItemSeparator/ListItemSeparator";
 import ListItemDeleteAction from "./src/components/ListItemDeleteAction/ListItemDeleteAction";
+import * as ImagePicker from "expo-image-picker";
 
 const App: FC = () => {
-    return <ListingEditScreen />;
+    const requestPermission = async () => {
+        const { granted } =
+            await ImagePicker.requestCameraRollPermissionsAsync();
+        if (!granted) {
+            alert("You need to enable permission to access the library");
+        }
+    };
+
+    useEffect(() => {
+        requestPermission();
+    }, []);
+    return <CustomScreen></CustomScreen>;
 };
 
 export default App;
