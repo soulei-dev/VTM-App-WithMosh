@@ -31,9 +31,8 @@ import * as ImagePicker from "expo-image-picker";
 const App: FC = () => {
     const [imageUri, setImageUri] = useState<any>();
     const requestPermission = async () => {
-        const { granted } =
-            await ImagePicker.requestCameraRollPermissionsAsync();
-        if (!granted) {
+        const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (!result.granted) {
             alert("You need to enable permission to access the library");
         }
     };
