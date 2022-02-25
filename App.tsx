@@ -27,13 +27,15 @@ import ListingEditScreen from "./src/screens/ListingEditScreen/ListingEditScreen
 import ListItemSeparator from "./src/components/ListItemSeparator/ListItemSeparator";
 import ListItemDeleteAction from "./src/components/ListItemDeleteAction/ListItemDeleteAction";
 import * as ImagePicker from "expo-image-picker";
+import CustomImageInput from "./src/components/CustomImageInput/CustomImageInput";
 
 const App: FC = () => {
     const [imageUri, setImageUri] = useState<any>();
+
     const requestPermission = async () => {
         const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (!result.granted) {
-            alert("You need to enable permission to access the library");
+            alert("Need access!");
         }
     };
 
@@ -42,25 +44,17 @@ const App: FC = () => {
     }, []);
 
     const selectedImage = async () => {
-        try {
-            const result = await ImagePicker.launchImageLibraryAsync();
-            if (!result.cancelled) {
-                setImageUri(result.uri);
-            }
-        } catch (error) {
-            console.log("Error sending ", error);
+        const result = await ImagePicker.launchImageLibraryAsync();
+        if (!result.cancelled) {
+            setImageUri(result.uri);
         }
     };
 
     return (
         <CustomScreen>
-            <Button title="Select image" onPress={selectedImage} />
-            <Image
-                source={{ uri: imageUri }}
-                style={{
-                    width: 200,
-                    height: 200,
-                }}
+            <CustomImageInput
+                imageUri={imageUri}
+                onChangeImage={selectedImage}
             />
         </CustomScreen>
     );
