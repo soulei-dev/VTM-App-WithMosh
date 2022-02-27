@@ -31,46 +31,26 @@ import CustomImageInput from "./src/components/CustomImageInput/CustomImageInput
 import CustomImageInputList from "./src/components/CustomImageInputList/CustomImageInputList";
 
 const App: FC = () => {
-    const [imageUri, setImageUri] = useState<any>();
-    const [array, setArray] = useState<any>([]);
-    console.log(array);
+    const [imageUris, setImageUris] = useState<any>([]);
 
-    const requestPermission = async () => {
-        const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (!result.granted) {
-            alert("Need access!");
-        }
+    const handleAdd = (uri: any) => {
+        setImageUris([...imageUris, uri]);
     };
 
-    useEffect(() => {
-        requestPermission();
-    }, []);
-
-    const selectedImage = async () => {
-        const result = await ImagePicker.launchImageLibraryAsync();
-        if (!result.cancelled) {
-            setArray((array: any) =>
-                array.concat({
-                    id: Math.random().toString(36).slice(2),
-                    imageUri: result.uri,
-                })
-            );
-            console.log(array);
-        }
+    const handleRemove = (uri: any) => {
+        setImageUris(imageUris.filter((imageUri: any) => imageUri !== uri));
     };
 
-    const handleRemoveImage = (image: any) => {
-        setArray(array.filter((a: any) => a.id !== image.id));
-    };
     return (
         <CustomScreen style={styles.container}>
             {/* <CustomImageInputList
                 imageUris={array}
                 onRemoveImage={handleRemoveImage}
             /> */}
-            <CustomImageInput
-                imageUri={imageUri}
-                onChangeImage={(uri: any) => setImageUri(uri)}
+            <CustomImageInputList
+                imageUris={imageUris}
+                onAddImage={handleAdd}
+                onRemoveImage={handleRemove}
             />
         </CustomScreen>
     );

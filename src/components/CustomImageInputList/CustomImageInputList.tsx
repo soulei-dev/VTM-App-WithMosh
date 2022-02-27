@@ -10,29 +10,33 @@ import CustomImageInput from "../CustomImageInput/CustomImageInput";
 type Props = {
     imageUris: any;
     onRemoveImage?: any;
+    onAddImage?: any;
 };
 
-const CustomImageInputList: FC<Props> = ({ imageUris, onRemoveImage }) => {
+const CustomImageInputList: FC<Props> = ({
+    imageUris = [],
+    onRemoveImage,
+    onAddImage,
+}) => {
     return (
         <View style={styles.container}>
-            {imageUris && (
-                <FlatList
-                    horizontal
-                    data={imageUris}
-                    keyExtractor={(imageUri) => imageUri.id}
-                    renderItem={({ item }) => (
-                        <TouchableWithoutFeedback onPress={onRemoveImage}>
-                            <CustomImageInput imageUri={item.imageUri} />
-                        </TouchableWithoutFeedback>
-                    )}
-                />
-            )}
+            {imageUris.map((uri: any) => (
+                <View key={uri}>
+                    <CustomImageInput
+                        imageUri={uri}
+                        onChangeImage={() => onRemoveImage(uri)}
+                    />
+                </View>
+            ))}
+            <CustomImageInput onChangeImage={(uri: any) => onAddImage(uri)} />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+        flexDirection: "row",
+    },
 });
 
 export default CustomImageInputList;

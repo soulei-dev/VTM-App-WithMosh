@@ -66,7 +66,7 @@ const CustomImageInput: FC<Props> = ({ imageUri, onChangeImage }) => {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 20,
+        margin: 10,
         backgroundColor: "#F7F4F4",
         width: 80,
         height: 80,
