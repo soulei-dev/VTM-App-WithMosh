@@ -9,14 +9,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 
 type Props = {
-    imageUri: any;
-    onChangeImage: any;
+    imageUri?: any;
+    onAddImage?: any;
 };
 
-const CustomImageInput: FC<Props> = ({ imageUri, onChangeImage }) => {
+const CustomImageInput: FC<Props> = ({ imageUri, onAddImage }) => {
     return (
         <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={onChangeImage}>
+            <TouchableWithoutFeedback onPress={onAddImage}>
                 {imageUri ? (
                     <Image source={{ uri: imageUri }} style={styles.image} />
                 ) : (

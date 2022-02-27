@@ -28,9 +28,11 @@ import ListItemSeparator from "./src/components/ListItemSeparator/ListItemSepara
 import ListItemDeleteAction from "./src/components/ListItemDeleteAction/ListItemDeleteAction";
 import * as ImagePicker from "expo-image-picker";
 import CustomImageInput from "./src/components/CustomImageInput/CustomImageInput";
+import CustomImageInputList from "./src/components/CustomImageInputList/CustomImageInputList";
 
 const App: FC = () => {
-    const [imageUri, setImageUri] = useState<any>();
+    const [array, setArray] = useState<any>([]);
+    console.log(array);
 
     const requestPermission = async () => {
         const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -46,18 +48,27 @@ const App: FC = () => {
     const selectedImage = async () => {
         const result = await ImagePicker.launchImageLibraryAsync();
         if (!result.cancelled) {
-            setImageUri(result.uri);
+            setArray((array: any) =>
+                array.concat({
+                    id: Math.random().toString(36).slice(2),
+                    imageUri: result.uri,
+                })
+            );
+            console.log(array);
         }
     };
-
     return (
-        <CustomScreen>
-            <CustomImageInput
-                imageUri={imageUri}
-                onChangeImage={selectedImage}
-            />
+        <CustomScreen style={styles.container}>
+            <CustomImageInputList imageUris={array} />
+            <CustomImageInput onAddImage={selectedImage} />
         </CustomScreen>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: "row",
+    },
+});
 
 export default App;
