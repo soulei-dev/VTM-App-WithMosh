@@ -1,10 +1,5 @@
-import React, { FC } from "react";
-import {
-    View,
-    StyleSheet,
-    FlatList,
-    TouchableWithoutFeedback,
-} from "react-native";
+import React, { FC, useRef } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
 import CustomImageInput from "../CustomImageInput/CustomImageInput";
 
 type Props = {
@@ -18,17 +13,28 @@ const CustomImageInputList: FC<Props> = ({
     onRemoveImage,
     onAddImage,
 }) => {
+    const scrollView: any = useRef();
     return (
-        <View style={styles.container}>
-            {imageUris.map((uri: any) => (
-                <View key={uri}>
+        <View>
+            <ScrollView
+                horizontal
+                ref={scrollView}
+                onContentSizeChange={() => scrollView.current.scrollToEnd()}
+            >
+                <View style={styles.container}>
+                    {imageUris.map((uri: any) => (
+                        <View key={uri}>
+                            <CustomImageInput
+                                imageUri={uri}
+                                onChangeImage={() => onRemoveImage(uri)}
+                            />
+                        </View>
+                    ))}
                     <CustomImageInput
-                        imageUri={uri}
-                        onChangeImage={() => onRemoveImage(uri)}
+                        onChangeImage={(uri: any) => onAddImage(uri)}
                     />
                 </View>
-            ))}
-            <CustomImageInput onChangeImage={(uri: any) => onAddImage(uri)} />
+            </ScrollView>
         </View>
     );
 };
