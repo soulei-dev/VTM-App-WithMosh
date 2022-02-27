@@ -31,6 +31,7 @@ import CustomImageInput from "./src/components/CustomImageInput/CustomImageInput
 import CustomImageInputList from "./src/components/CustomImageInputList/CustomImageInputList";
 
 const App: FC = () => {
+    const [imageUri, setImageUri] = useState<any>();
     const [array, setArray] = useState<any>([]);
     console.log(array);
 
@@ -57,10 +58,20 @@ const App: FC = () => {
             console.log(array);
         }
     };
+
+    const handleRemoveImage = (image: any) => {
+        setArray(array.filter((a: any) => a.id !== image.id));
+    };
     return (
         <CustomScreen style={styles.container}>
-            <CustomImageInputList imageUris={array} />
-            <CustomImageInput onAddImage={selectedImage} />
+            {/* <CustomImageInputList
+                imageUris={array}
+                onRemoveImage={handleRemoveImage}
+            /> */}
+            <CustomImageInput
+                imageUri={imageUri}
+                onChangeImage={(uri: any) => setImageUri(uri)}
+            />
         </CustomScreen>
     );
 };

@@ -1,22 +1,55 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import {
     View,
     StyleSheet,
     TouchableWithoutFeedback,
     Image,
+    Alert,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
+import * as ImagePicker from "expo-image-picker";
 
 type Props = {
     imageUri?: any;
-    onAddImage?: any;
+    onChangeImage?: any;
 };
 
-const CustomImageInput: FC<Props> = ({ imageUri, onAddImage }) => {
+const CustomImageInput: FC<Props> = ({ imageUri, onChangeImage }) => {
+    useEffect(() => {
+        requestPermission();
+    }, []);
+
+    const requestPermission = async () => {
+        const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (!result.granted) {
+            alert("Need access!");
+        }
+    };
+
+    const handlePress = () => {
+        if (!imageUri) selectedImage();
+        else
+            Alert.alert(
+                "Supprimer",
+                "Êtes-vous sûre de vouloir supprimer cette image ?",
+                [
+                    { text: "Oui", onPress: () => onChangeImage(null) },
+                    { text: "Non" },
+                ]
+            );
+    };
+
+    const selectedImage = async () => {
+        const result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            quality: 0.5,
+        });
+        if (!result.cancelled) onChangeImage(result.uri);
+    };
     return (
-        <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={onAddImage}>
+        <TouchableWithoutFeedback onPress={handlePress}>
+            <View style={styles.container}>
                 {imageUri ? (
                     <Image source={{ uri: imageUri }} style={styles.image} />
                 ) : (
@@ -26,8 +59,8 @@ const CustomImageInput: FC<Props> = ({ imageUri, onAddImage }) => {
                         color={colors.gray}
                     />
                 )}
-            </TouchableWithoutFeedback>
-        </View>
+            </View>
+        </TouchableWithoutFeedback>
     );
 };
 
