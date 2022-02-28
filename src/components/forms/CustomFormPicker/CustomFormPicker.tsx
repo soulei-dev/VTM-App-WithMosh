@@ -7,7 +7,7 @@ type Props = {
     CustomPickerItemComponent: any;
     name: string;
     items: any;
-    numberOfColumns?: number;
+    numberOfColumns: number;
     placeholder: string;
     width?: string | number;
 };
@@ -20,7 +20,7 @@ const CustomFormPicker: FC<Props> = ({
     name,
     width,
 }) => {
-    const { errors, touched, values, setFieldValue } = useFormikContext();
+    const { errors, touched, values, setFieldValue }: any = useFormikContext();
     return (
         <>
             <CustomPicker

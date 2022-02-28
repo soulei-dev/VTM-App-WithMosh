@@ -8,7 +8,7 @@ type Props = {
 };
 
 const CustomFormImagePicker: FC<Props> = ({ name }) => {
-    const { errors, setFieldValue, touched, values } = useFormikContext();
+    const { errors, setFieldValue, touched, values }: any = useFormikContext();
     const imageUris = values[name];
 
     const handleAdd = (uri: any) => {

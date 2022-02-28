@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import CustomIcon from "../CustomIcon/CustomIcon";
 import CustomText from "../CustomText/CustomText";
 
@@ -10,14 +11,16 @@ type Props = {
 
 const CustomCategoryPickerItem: FC<Props> = ({ item, onPress }) => {
     return (
-        <View style={styles.container}>
-            <CustomIcon
-                backgroundColor={item.backgroundColor}
-                name={item.icon}
-                size={80}
-            />
-            <CustomText style={styles.label}>{item.label}</CustomText>
-        </View>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.container}>
+                <CustomIcon
+                    backgroundColor={item.backgroundColor}
+                    name={item.icon}
+                    size={80}
+                />
+                <CustomText style={styles.label}>{item.label}</CustomText>
+            </View>
+        </TouchableWithoutFeedback>
     );
 };
 

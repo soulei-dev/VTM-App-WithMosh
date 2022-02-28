@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import {
@@ -8,8 +8,9 @@ import {
     CustomSubmitButton,
     CustomFormImagePicker as FormImagePicker,
 } from "../../components/forms";
-import * as Yup from "yup";
 import CustomCategoryPickerItem from "../../components/CustomCategoryPickerItem/CustomCategoryPickerItem";
+import * as Yup from "yup";
+import * as Location from "expo-location";
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required().min(1).label("Title"),
@@ -39,11 +40,25 @@ const categories = [
 ];
 
 const ListingEditScreen: FC = () => {
+    const [location, setLocation] = useState<any>();
+
+    const getLocation = async () => {
+        const { granted } = await Location.requestPermissionsAsync();
+        if (!granted) return;
+        const {
+            coords: { latitude, longitude },
+        }: any = await Location.getLastKnownPositionAsync();
+        setLocation({ latitude, longitude });
+    };
+
+    useEffect(() => {
+        getLocation();
+    }, []);
     return (
         <CustomScreen style={styles.container}>
             <CustomForm
                 validationSchema={validationSchema}
-                onSubmit={(values) => console.log(values)}
+                onSubmit={(values) => console.log("Location ==== ", location)}
                 initialValues={{
                     title: "",
                     price: "",
