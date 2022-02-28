@@ -31,35 +31,7 @@ import CustomImageInput from "./src/components/CustomImageInput/CustomImageInput
 import CustomImageInputList from "./src/components/CustomImageInputList/CustomImageInputList";
 
 const App: FC = () => {
-    const [imageUris, setImageUris] = useState<any>([]);
-
-    const handleAdd = (uri: any) => {
-        setImageUris([...imageUris, uri]);
-    };
-
-    const handleRemove = (uri: any) => {
-        setImageUris(imageUris.filter((imageUri: any) => imageUri !== uri));
-    };
-
-    return (
-        <CustomScreen style={styles.container}>
-            {/* <CustomImageInputList
-                imageUris={array}
-                onRemoveImage={handleRemoveImage}
-            /> */}
-            <CustomImageInputList
-                imageUris={imageUris}
-                onAddImage={handleAdd}
-                onRemoveImage={handleRemove}
-            />
-        </CustomScreen>
-    );
+    return <ListingEditScreen />;
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-    },
-});
 
 export default App;

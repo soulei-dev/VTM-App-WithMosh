@@ -17,6 +17,7 @@ const CustomImageInputList: FC<Props> = ({
     return (
         <View>
             <ScrollView
+                showsHorizontalScrollIndicator={false}
                 horizontal
                 ref={scrollView}
                 onContentSizeChange={() => scrollView.current.scrollToEnd()}

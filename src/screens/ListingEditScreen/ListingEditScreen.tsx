@@ -6,6 +6,7 @@ import {
     CustomFormField as FormField,
     CustomFormPicker as Picker,
     CustomSubmitButton,
+    CustomFormImagePicker as FormImagePicker,
 } from "../../components/forms";
 import * as Yup from "yup";
 import CustomCategoryPickerItem from "../../components/CustomCategoryPickerItem/CustomCategoryPickerItem";
@@ -15,6 +16,9 @@ const validationSchema = Yup.object().shape({
     price: Yup.number().required().min(1).max(10000).label("Price"),
     category: Yup.object().required().nullable().label("Category"),
     description: Yup.string().label("Description"),
+    images: Yup.array()
+        .min(1, "Veuillez selectionner au moins une image")
+        .label("Images"),
 });
 
 const categories = [
@@ -45,8 +49,10 @@ const ListingEditScreen: FC = () => {
                     price: "",
                     category: null,
                     description: "",
+                    images: [],
                 }}
             >
+                <FormImagePicker name="images" />
                 <FormField
                     name="title"
                     autoCapitalize="sentences"
