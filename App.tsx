@@ -3,13 +3,14 @@ import { Text, Button } from "react-native";
 import CustomScreen from "./src/components/CustomScreen/CustomScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { RotateInUpLeft } from "react-native-reanimated";
 
 const Link = () => {
   const navigation = useNavigation();
   return (
     <Button
       title="Click"
-      onPress={() => navigation.navigate("TweetsDetails")}
+      onPress={() => navigation.navigate("TweetsDetails", { id: 1 })}
     />
   );
 };
@@ -23,10 +24,10 @@ const Tweets = () => {
   );
 };
 
-const TweetsDetails = () => {
+const TweetsDetails = ({ route }: any) => {
   return (
     <CustomScreen>
-      <Text>Tweets Details</Text>
+      <Text>Tweets Details {route.params.id}</Text>
     </CustomScreen>
   );
 };
@@ -36,7 +37,11 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Tweets" component={Tweets} />
-      <Stack.Screen name="TweetsDetails" component={TweetsDetails} />
+      <Stack.Screen
+        name="TweetsDetails"
+        component={TweetsDetails}
+        options={({ route }: any) => ({ title: route.params.id })}
+      />
     </Stack.Navigator>
   );
 };
