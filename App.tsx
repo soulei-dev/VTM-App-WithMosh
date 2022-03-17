@@ -3,7 +3,7 @@ import { Text, Button } from "react-native";
 import CustomScreen from "./src/components/CustomScreen/CustomScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { RotateInUpLeft } from "react-native-reanimated";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Link = () => {
   const navigation = useNavigation();
@@ -32,7 +32,25 @@ const TweetsDetails = ({ route }: any) => {
   );
 };
 
+const Feed = () => {
+  return (
+    <CustomScreen>
+      <Text>Feed</Text>
+    </CustomScreen>
+  );
+};
+
+const Account = () => {
+  return (
+    <CustomScreen>
+      <Text>Account</Text>
+    </CustomScreen>
+  );
+};
+
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
 const StackNavigator = () => {
   return (
     <Stack.Navigator
@@ -54,10 +72,19 @@ const StackNavigator = () => {
   );
 };
 
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Feed" component={Feed} />
+      <Tab.Screen name="Account" component={Account} />
+    </Tab.Navigator>
+  );
+};
+
 const App: FC = () => {
   return (
     <NavigationContainer>
-      <StackNavigator />
+      <TabNavigator />
     </NavigationContainer>
   );
 };
