@@ -21,8 +21,8 @@ const StackNavigator = () => {
   );
 };
 
-const AppNavigator: FC<Props> = () => {
+const AuthNavigator: FC<Props> = () => {
   return <StackNavigator />;
 };
 
-export default AppNavigator;
+export default AuthNavigator;
