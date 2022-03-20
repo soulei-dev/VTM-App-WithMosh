@@ -1,9 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ListingEditScreen from "../screens/ListingEditScreen/ListingEditScreen";
 import colors from "../config/colors";
 import FeedNavigator from "./FeedNavigator";
 import AccountNavigator from "./AccountNavigator";
+import NewListingButton from "./NewListingButton";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,12 +26,13 @@ const AppNavigator = () => (
     <Tab.Screen
       name="ListingsEdit"
       component={ListingEditScreen}
-      options={{
-        title: "",
-        tabBarIcon: ({ size, color }: any) => (
-          <Ionicons name="add-circle-outline" size={size} color={color} />
+      options={({ navigation }) => ({
+        tabBarButton: () => (
+          <NewListingButton
+            onPress={() => navigation.navigate("ListingsEdit")}
+          />
         ),
-      }}
+      })}
     />
     <Tab.Screen
       name="Account"
