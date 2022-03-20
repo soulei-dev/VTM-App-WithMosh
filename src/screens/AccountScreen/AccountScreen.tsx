@@ -6,6 +6,7 @@ import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import colors from "../../config/colors";
 import CustomIcon from "../../components/CustomIcon/CustomIcon";
 import { useNavigation } from "@react-navigation/native";
+import routes from "../../navigation/routes";
 
 const menuItems = [
   {
@@ -22,7 +23,7 @@ const menuItems = [
       name: "email",
       backgroundColor: colors.blueLight,
     },
-    targetScreen: "Messages",
+    targetScreen: routes.MESSAGES,
   },
 ];
 

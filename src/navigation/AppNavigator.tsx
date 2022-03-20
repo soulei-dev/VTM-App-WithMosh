@@ -5,6 +5,7 @@ import colors from "../config/colors";
 import FeedNavigator from "./FeedNavigator";
 import AccountNavigator from "./AccountNavigator";
 import NewListingButton from "./NewListingButton";
+import routes from "./routes";
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,7 @@ const AppNavigator = () => (
       options={({ navigation }) => ({
         tabBarButton: () => (
           <NewListingButton
-            onPress={() => navigation.navigate("ListingsEdit")}
+            onPress={() => navigation.navigate(routes.LISTINGS_EDIT)}
           />
         ),
       })}

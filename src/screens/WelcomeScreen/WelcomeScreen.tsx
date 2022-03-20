@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { View, ImageBackground, StyleSheet, Image, Text } from "react-native";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import { useNavigation } from "@react-navigation/native";
+import routes from "../../navigation/routes";
 
 import colors from "../../config/colors";
 
@@ -22,14 +23,14 @@ const WelcomeScreen: FC = () => {
           label="Login"
           buttonColor={colors.primary}
           labelColor={colors.secondary}
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate(routes.LOGIN)}
           width="90%"
         />
         <CustomButton
           label="Register"
           buttonColor={colors.secondary}
           labelColor={colors.black}
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate(routes.REGISTER)}
           width="90%"
         />
       </ImageBackground>

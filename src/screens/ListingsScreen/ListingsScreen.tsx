@@ -3,7 +3,7 @@ import { FlatList, StyleSheet } from "react-native";
 import CustomCard from "../../components/CustomCard/CustomCard";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import routes from "../../navigation/routes";
 
 type Props = {
   route: any;
@@ -47,7 +47,7 @@ const ListingsScreen: FC<Props> = () => {
             price={item.price}
             image={item.image}
             city={item.city}
-            onPress={() => navigation.navigate("ListingDetails", item)}
+            onPress={() => navigation.navigate(routes.LISTING_DETAIL, item)}
           />
         )}
         showsVerticalScrollIndicator={false}
