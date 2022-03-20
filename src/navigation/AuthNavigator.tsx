@@ -9,7 +9,7 @@ import ListingDetailsScreen from "../screens/ListingDetailsScreen/ListingDetails
 import MessagesScreen from "../screens/MessagesScreen/MessagesScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 type Props = {};
@@ -33,7 +33,16 @@ const TabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen name="ListingsEdit" component={ListingEditScreen} />
+      <Tab.Screen
+        name="ListingsEdit"
+        component={ListingEditScreen}
+        options={{
+          title: "",
+          tabBarIcon: ({ size, color }: any) => (
+            <Ionicons name="add-circle-outline" size={size} color={color} />
+          ),
+        }}
+      />
       <Tab.Screen
         name="Account"
         component={AccountScreen}
