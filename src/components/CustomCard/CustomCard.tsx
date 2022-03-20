@@ -5,6 +5,7 @@ import {
   View,
   Image,
   ImageSourcePropType,
+  TouchableWithoutFeedback,
 } from "react-native";
 import colors from "../../config/colors";
 import CustomText from "../CustomText/CustomText";
@@ -14,20 +15,23 @@ type Props = {
   title: string;
   price: number;
   city: string;
+  onPress: () => void;
 };
 
-const CustomCard: FC<Props> = ({ image, title, price, city }) => {
+const CustomCard: FC<Props> = ({ image, title, price, city, onPress }) => {
   return (
-    <View style={styles.card}>
-      <Image source={image} style={styles.image} />
-      <View style={styles.cardDetail}>
-        <CustomText style={styles.title}>{title}</CustomText>
-        <CustomText style={styles.price}>{`${price} €`}</CustomText>
-        <View style={styles.city}>
-          <Text style={styles.labelCity}>{city}</Text>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.card}>
+        <Image source={image} style={styles.image} />
+        <View style={styles.cardDetail}>
+          <CustomText style={styles.title}>{title}</CustomText>
+          <CustomText style={styles.price}>{`${price} €`}</CustomText>
+          <View style={styles.city}>
+            <Text style={styles.labelCity}>{city}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

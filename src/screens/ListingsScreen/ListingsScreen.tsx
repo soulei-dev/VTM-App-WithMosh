@@ -33,7 +33,7 @@ const listings = [
   },
 ];
 
-const ListingsScreen: FC<Props> = ({ route }) => {
+const ListingsScreen: FC<Props> = () => {
   const navigation = useNavigation();
 
   return (
@@ -42,24 +42,13 @@ const ListingsScreen: FC<Props> = ({ route }) => {
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("ListingDetails", {
-                id: item.id,
-                title: item.title,
-                price: item.price,
-                image: item.image,
-                city: item.city,
-              })
-            }
-          >
-            <CustomCard
-              title={item.title}
-              price={item.price}
-              image={item.image}
-              city={item.city}
-            />
-          </TouchableOpacity>
+          <CustomCard
+            title={item.title}
+            price={item.price}
+            image={item.image}
+            city={item.city}
+            onPress={() => navigation.navigate("ListingDetails", item)}
+          />
         )}
         showsVerticalScrollIndicator={false}
       />

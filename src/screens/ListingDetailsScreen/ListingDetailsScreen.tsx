@@ -9,13 +9,15 @@ type Props = {
 };
 
 const ListingDetailsScreen: FC<Props> = ({ route }) => {
+  const listing = route.params;
+
   return (
     <View>
-      <Image style={styles.image} source={route.params.image} />
+      <Image style={styles.image} source={listing.image} />
       <View style={styles.details}>
-        <CustomText style={styles.title}>{route.params.title}</CustomText>
-        <CustomText style={styles.price}>{route.params.price} €</CustomText>
-        <CustomText>{route.params.city}</CustomText>
+        <CustomText style={styles.title}>{listing.title}</CustomText>
+        <CustomText style={styles.price}>{listing.price} €</CustomText>
+        <CustomText>{listing.city}</CustomText>
         <View style={styles.userContainer}>
           <ListItem
             onPress={() => console.log("Pressed")}
