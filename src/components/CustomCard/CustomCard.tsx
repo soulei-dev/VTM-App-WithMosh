@@ -11,18 +11,18 @@ import colors from "../../config/colors";
 import CustomText from "../CustomText/CustomText";
 
 type Props = {
-  image: ImageSourcePropType;
+  imageUrl: string;
   title: string;
   price: number;
-  city: string;
+  city?: string;
   onPress: () => void;
 };
 
-const CustomCard: FC<Props> = ({ image, title, price, city, onPress }) => {
+const CustomCard: FC<Props> = ({ imageUrl, title, price, city, onPress }) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image source={image} style={styles.image} />
+        <Image source={{ uri: imageUrl }} style={styles.image} />
         <View style={styles.cardDetail}>
           <CustomText style={styles.title}>{title}</CustomText>
           <CustomText style={styles.price}>{`${price} €`}</CustomText>

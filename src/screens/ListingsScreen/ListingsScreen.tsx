@@ -1,52 +1,46 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import CustomCard from "../../components/CustomCard/CustomCard";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import { useNavigation } from "@react-navigation/native";
+import listingsApi from "../../api/listings";
 import routes from "../../navigation/routes";
 
 type Props = {
   route: any;
 };
 
-const listings = [
-  {
-    id: 1,
-    title: "One piece collection",
-    price: 45,
-    image: require("../../assets/image.jpeg"),
-    city: "Antibes, 06600",
-  },
-  {
-    id: 2,
-    title: "Bleach",
-    price: 85,
-    image: require("../../assets/s-l1600.png"),
-    city: "Saint-Laurent-du-Var, 06700",
-  },
-  {
-    id: 3,
-    title: "Shingeki no kyojin",
-    price: 45,
-    image: require("../../assets/s-l300.jpg"),
-    city: "Nice, 06000",
-  },
-];
+interface ListingsProps {
+  id: number;
+  title: string;
+  price: number;
+  images: string[];
+}
 
 const ListingsScreen: FC<Props> = () => {
   const navigation = useNavigation();
+  const [listings, setListings] = useState<ListingsProps[]>([]);
+
+  useEffect(() => {
+    loadListings();
+  }, []);
+
+  const loadListings = async () => {
+    const response = await listingsApi.getListings();
+    console.log(response.data);
+    setListings(response.data);
+  };
 
   return (
     <CustomScreen style={styles.screen}>
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
-        renderItem={({ item }) => (
+        renderItem={({ item }: any) => (
           <CustomCard
             title={item.title}
             price={item.price}
-            image={item.image}
-            city={item.city}
+            imageUrl={item.images[0].url}
             onPress={() => navigation.navigate(routes.LISTING_DETAIL, item)}
           />
         )}
