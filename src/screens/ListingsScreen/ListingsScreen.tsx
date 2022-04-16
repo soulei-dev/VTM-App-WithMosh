@@ -5,6 +5,9 @@ import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import { useNavigation } from "@react-navigation/native";
 import listingsApi from "../../api/listings";
 import routes from "../../navigation/routes";
+import CustomButton from "../../components/CustomButton/CustomButton";
+import CustomText from "../../components/CustomText/CustomText";
+import colors from "../../config/colors";
 
 type Props = {
   route: any;
@@ -20,6 +23,7 @@ interface ListingsProps {
 const ListingsScreen: FC<Props> = () => {
   const navigation = useNavigation();
   const [listings, setListings] = useState<ListingsProps[]>([]);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     loadListings();
@@ -27,12 +31,28 @@ const ListingsScreen: FC<Props> = () => {
 
   const loadListings = async () => {
     const response = await listingsApi.getListings();
+    if (!response.ok) return setError(true);
+
     console.log(response.data);
+    setError(false);
     setListings(response.data);
   };
 
   return (
     <CustomScreen style={styles.screen}>
+      {error && (
+        <>
+          <CustomText style={styles.errorMessage}>
+            Couldn't retrieve the listings.
+          </CustomText>
+          <CustomButton
+            label="Retry"
+            labelColor="white"
+            buttonColor={colors.primary}
+            onPress={loadListings}
+          />
+        </>
+      )}
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
@@ -54,6 +74,9 @@ const styles = StyleSheet.create({
   screen: {
     backgroundColor: "#F7F4F4",
     padding: 20,
+  },
+  errorMessage: {
+    textAlign: "center",
   },
 });
 
