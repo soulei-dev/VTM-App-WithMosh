@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import CustomCard from "../../components/CustomCard/CustomCard";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import { useNavigation } from "@react-navigation/native";
@@ -24,13 +24,17 @@ const ListingsScreen: FC<Props> = () => {
   const navigation = useNavigation();
   const [listings, setListings] = useState<ListingsProps[]>([]);
   const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     loadListings();
   }, []);
 
   const loadListings = async () => {
+    setLoading(true);
     const response = await listingsApi.getListings();
+    setLoading(false);
+
     if (!response.ok) return setError(true);
 
     console.log(response.data);
@@ -53,6 +57,7 @@ const ListingsScreen: FC<Props> = () => {
           />
         </>
       )}
+      <ActivityIndicator animating={loading} size="large" />
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
