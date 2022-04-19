@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import CustomCard from "../../components/CustomCard/CustomCard";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import { useNavigation } from "@react-navigation/native";
@@ -8,39 +8,25 @@ import routes from "../../navigation/routes";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import CustomText from "../../components/CustomText/CustomText";
 import colors from "../../config/colors";
+import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator";
+import useApi from "../../hooks/useApi";
 
 type Props = {
   route: any;
 };
 
-interface ListingsProps {
-  id: number;
-  title: string;
-  price: number;
-  images: string[];
-}
-
 const ListingsScreen: FC<Props> = () => {
   const navigation = useNavigation();
-  const [listings, setListings] = useState<ListingsProps[]>([]);
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const {
+    data: listings,
+    error,
+    loading,
+    request: loadListings,
+  } = useApi(listingsApi.getListings);
 
   useEffect(() => {
     loadListings();
   }, []);
-
-  const loadListings = async () => {
-    setLoading(true);
-    const response = await listingsApi.getListings();
-    setLoading(false);
-
-    if (!response.ok) return setError(true);
-
-    console.log(response.data);
-    setError(false);
-    setListings(response.data);
-  };
 
   return (
     <CustomScreen style={styles.screen}>
@@ -57,7 +43,7 @@ const ListingsScreen: FC<Props> = () => {
           />
         </>
       )}
-      <ActivityIndicator animating={loading} size="large" />
+      <ActivityIndicator visible={loading} />
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
