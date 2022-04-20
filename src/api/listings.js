@@ -11,7 +11,7 @@ const addListing = (listing) => {
   data.append("categoryId", listing.category.value);
   data.append("description", listing.description);
 
-  listing.images.forEach((images, index) =>
+  listing.images.forEach((image, index) =>
     data.append("images", {
       name: "images" + index,
       type: "images/jpeg",

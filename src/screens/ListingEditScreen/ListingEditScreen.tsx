@@ -11,6 +11,7 @@ import {
 import CustomCategoryPickerItem from "../../components/CustomCategoryPickerItem/CustomCategoryPickerItem";
 import * as Yup from "yup";
 import useLocation from "../../hooks/useLocation";
+import listingsApi from "../../api/listings";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -41,11 +42,17 @@ const categories = [
 
 const ListingEditScreen: FC = () => {
   const location = useLocation();
+
+  const handleSubmit = async (listing: any) => {
+    const result = await listingsApi.addListing({ ...listing, location });
+    if (!result.ok) return alert("Impossible de sauvegarder la liste.");
+    alert("Sauvegarder");
+  };
   return (
     <CustomScreen style={styles.container}>
       <CustomForm
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log("Location ==== ", location)}
+        onSubmit={handleSubmit}
         initialValues={{
           title: "",
           price: "",
