@@ -47,6 +47,7 @@ const ListingEditScreen: FC = () => {
   const [progress, setProgress] = useState<number>(0);
 
   const handleSubmit = async (listing: any) => {
+    setProgress(0);
     setUploadVisible(true);
     const result = await listingsApi.addListing(
       { ...listing, location },

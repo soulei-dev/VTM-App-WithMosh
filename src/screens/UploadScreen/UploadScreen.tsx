@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { View, StyleSheet, Modal } from "react-native";
 import CustomText from "../../components/CustomText/CustomText";
+import * as Progress from "react-native-progress";
+import colors from "../../config/colors";
 
 type Props = {
   progress: number;
@@ -11,7 +13,7 @@ const UploadScreen: FC<Props> = ({ progress = 0, visible = false }) => {
   return (
     <Modal visible={visible}>
       <View style={styles.container}>
-        <CustomText>{progress * 100}%</CustomText>
+        <Progress.Bar progress={progress} color={colors.primary} width={200} />
       </View>
     </Modal>
   );
