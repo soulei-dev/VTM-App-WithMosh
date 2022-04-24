@@ -46,7 +46,7 @@ const ListingEditScreen: FC = () => {
   const [uploadVisible, setUploadVisible] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
 
-  const handleSubmit = async (listing: any) => {
+  const handleSubmit = async (listing: any, { resetForm }: any) => {
     setProgress(0);
     setUploadVisible(true);
     const result = await listingsApi.addListing(
@@ -55,6 +55,8 @@ const ListingEditScreen: FC = () => {
     );
 
     if (!result.ok) return alert("Impossible de sauvegarder la liste.");
+
+    resetForm();
   };
   return (
     <CustomScreen style={styles.container}>
