@@ -53,14 +53,16 @@ const ListingEditScreen: FC = () => {
       { ...listing, location },
       (progress: any) => setProgress(progress)
     );
-    setUploadVisible(false);
 
     if (!result.ok) return alert("Impossible de sauvegarder la liste.");
-    alert("Sauvegarder");
   };
   return (
     <CustomScreen style={styles.container}>
-      <UploadScreen progress={progress} visible={uploadVisible} />
+      <UploadScreen
+        onDone={() => setUploadVisible(false)}
+        progress={progress}
+        visible={uploadVisible}
+      />
       <CustomForm
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
