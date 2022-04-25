@@ -4,7 +4,7 @@ import moment from 'moment';
 const prefix = 'cache';
 const expiryInMinutes = 5;
 
-const store = async ({key, value}: any) => {
+const store = async (key: any, value: any) => {
   try {
     const item = {
       value,
@@ -16,13 +16,13 @@ const store = async ({key, value}: any) => {
   }
 };
 
-const isExpired = ({ item }: any) => {
+const isExpired = (item: any) => {
   const now = moment(Date.now());
   const storedTime = moment(item.timestamp);
   return now.diff(storedTime, 'minutes') > expiryInMinutes;
 };
 
-const get = async ({ key }: any) => {
+const get = async (key: any) => {
   try {
     const value = await AsyncStorage.getItem(prefix + key);
     if (value !== null) {
