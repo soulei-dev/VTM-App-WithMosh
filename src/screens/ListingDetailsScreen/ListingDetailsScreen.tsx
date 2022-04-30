@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 import CustomText from "../../components/CustomText/CustomText";
 import ListItem from "../../components/ListItem/ListItem";
 import colors from "../../config/colors";
@@ -13,7 +14,12 @@ const ListingDetailsScreen: FC<Props> = ({ route }) => {
 
   return (
     <View>
-      <Image style={styles.image} source={listing.image} />
+      <Image
+        style={styles.image}
+        tint="light"
+        preview={{ uri: listing.images[0].thumbnailUrl }}
+        uri={listing.images[0].url}
+      />
       <View style={styles.details}>
         <CustomText style={styles.title}>{listing.title}</CustomText>
         <CustomText style={styles.price}>{listing.price} €</CustomText>

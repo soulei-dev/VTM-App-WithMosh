@@ -53,6 +53,7 @@ const ListingsScreen: FC<Props> = () => {
             price={item.price}
             imageUrl={item.images[0].url}
             onPress={() => navigation.navigate(routes.LISTING_DETAIL, item)}
+            thumbnailUrl={item.images[0].thumbnailUrl}
           />
         )}
         showsVerticalScrollIndicator={false}

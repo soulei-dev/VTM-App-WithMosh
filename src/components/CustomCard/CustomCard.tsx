@@ -3,10 +3,10 @@ import {
   Text,
   StyleSheet,
   View,
-  Image,
   ImageSourcePropType,
   TouchableWithoutFeedback,
 } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 import colors from "../../config/colors";
 import CustomText from "../CustomText/CustomText";
 
@@ -16,13 +16,26 @@ type Props = {
   price: number;
   city?: string;
   onPress: () => void;
+  thumbnailUrl?: string;
 };
 
-const CustomCard: FC<Props> = ({ imageUrl, title, price, city, onPress }) => {
+const CustomCard: FC<Props> = ({
+  imageUrl,
+  title,
+  price,
+  city,
+  onPress,
+  thumbnailUrl,
+}) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image source={{ uri: imageUrl }} style={styles.image} />
+        <Image
+          uri={imageUrl}
+          tint="light"
+          preview={{ uri: thumbnailUrl }}
+          style={styles.image}
+        />
         <View style={styles.cardDetail}>
           <CustomText style={styles.title}>{title}</CustomText>
           <CustomText style={styles.price}>{`${price} €`}</CustomText>
