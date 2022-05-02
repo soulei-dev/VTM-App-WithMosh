@@ -1,14 +1,18 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "./src/navigation/AuthNavigator";
 import navigationTheme from "./src/navigation/navigationTheme";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import NetInfo from "@react-native-community/netinfo";
+import OfflineNotiveBar from "./src/components/OfflineNotiveBar/OfflineNotiveBar";
 
 const App: FC = () => {
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator />
-    </NavigationContainer>
+    <>
+      <OfflineNotiveBar />
+      <NavigationContainer theme={navigationTheme}>
+        <AuthNavigator />
+      </NavigationContainer>
+    </>
   );
 };
 

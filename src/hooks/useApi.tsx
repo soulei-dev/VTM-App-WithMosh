@@ -20,7 +20,6 @@ const useApi = (apiFunc: { (): Promise<ApiResponse<any, any>>; (): any }) => {
 
     if (!response.ok) return setError(true);
 
-    console.log(response.data);
     setError(false);
     setData(response.data);
   };
