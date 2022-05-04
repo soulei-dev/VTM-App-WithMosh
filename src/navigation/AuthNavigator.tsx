@@ -13,16 +13,16 @@ const Stack = createStackNavigator();
 const AuthNavigator: FC<Props> = () => (
   <Stack.Navigator>
     <Stack.Screen
+      name="WelcomeScreen"
+      component={WelcomeScreen}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
       name="Listings"
       component={AppNavigator}
       options={{
         headerShown: false,
       }}
-    />
-    <Stack.Screen
-      name="WelcomeScreen"
-      component={WelcomeScreen}
-      options={{ headerShown: false }}
     />
     <Stack.Screen name="Login" component={LoginScreen} />
     <Stack.Screen name="Register" component={RegisterScreen} />

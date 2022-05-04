@@ -4,6 +4,7 @@ import AuthNavigator from "./src/navigation/AuthNavigator";
 import navigationTheme from "./src/navigation/navigationTheme";
 import NetInfo from "@react-native-community/netinfo";
 import OfflineNotiveBar from "./src/components/OfflineNotiveBar/OfflineNotiveBar";
+import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
 
 const App: FC = () => {
   return (
