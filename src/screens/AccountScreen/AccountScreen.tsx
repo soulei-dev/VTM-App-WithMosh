@@ -31,7 +31,7 @@ const menuItems = [
 
 const AccountScreen: FC = () => {
   const navigation = useNavigation();
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   return (
     <CustomScreen>
       <View style={styles.container}>
@@ -72,6 +72,7 @@ const AccountScreen: FC = () => {
               size={35}
             />
           }
+          onPress={() => setUser(null)}
         />
       </View>
     </CustomScreen>
