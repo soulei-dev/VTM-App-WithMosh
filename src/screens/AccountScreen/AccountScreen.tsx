@@ -7,6 +7,8 @@ import colors from "../../config/colors";
 import CustomIcon from "../../components/CustomIcon/CustomIcon";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../navigation/routes";
+import { useContext } from "react";
+import AuthContext from "../../auth/context";
 
 const menuItems = [
   {
@@ -29,13 +31,14 @@ const menuItems = [
 
 const AccountScreen: FC = () => {
   const navigation = useNavigation();
+  const { user } = useContext(AuthContext);
   return (
     <CustomScreen>
       <View style={styles.container}>
         <ListItem
           image={require("../../assets/148327.jpg")}
-          title="Souleimane Kouygou"
-          subTitle="soo@dev.com"
+          title={user.name}
+          subTitle={user.email}
         />
       </View>
       <View>
