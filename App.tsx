@@ -1,19 +1,21 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "./src/navigation/AuthNavigator";
 import navigationTheme from "./src/navigation/navigationTheme";
-import NetInfo from "@react-native-community/netinfo";
 import OfflineNotiveBar from "./src/components/OfflineNotiveBar/OfflineNotiveBar";
-import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
+import AuthContext from "./src/auth/context";
+import AppNavigator from "./src/navigation/AppNavigator";
 
 const App: FC = () => {
+  const [user, setUser] = useState<any>();
+
   return (
-    <>
+    <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotiveBar />
       <NavigationContainer theme={navigationTheme}>
-        <AuthNavigator />
+        {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
-    </>
+    </AuthContext.Provider>
   );
 };
 

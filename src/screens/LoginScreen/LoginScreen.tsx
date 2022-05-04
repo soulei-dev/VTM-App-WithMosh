@@ -11,6 +11,8 @@ import {
   CustomFormField,
   CustomSubmitButton,
 } from "../../components/forms";
+import { useContext } from "react";
+import AuthContext from "../../auth/context";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -19,6 +21,7 @@ const validationSchema = Yup.object().shape({
 
 const LoginScreen: FC = () => {
   const [loginFailed, setLoginFailed] = useState<boolean>(false);
+  const authContext = useContext(AuthContext);
 
   const handleSubmit = async ({ email, password }: any) => {
     const result = await authLogin.login(email, password);
@@ -26,7 +29,7 @@ const LoginScreen: FC = () => {
     if (!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
     const user = jwtDecode(result.data);
-    console.log(user);
+    authContext.setUser(user);
   };
 
   return (
