@@ -3,6 +3,7 @@ import { Image, StyleSheet } from "react-native";
 import authLogin from "../../api/auth";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import * as Yup from "yup";
+import jwtDecode from "jwt-decode";
 
 import {
   CustomErrorMessage,
@@ -24,7 +25,8 @@ const LoginScreen: FC = () => {
 
     if (!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
-    console.log(result.data);
+    const user = jwtDecode(result.data);
+    console.log(user);
   };
 
   return (
