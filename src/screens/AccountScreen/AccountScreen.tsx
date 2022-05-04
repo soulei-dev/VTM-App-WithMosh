@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import routes from "../../navigation/routes";
 import { useContext } from "react";
 import AuthContext from "../../auth/context";
+import authStorage from "../../auth/storage";
 
 const menuItems = [
   {
@@ -32,6 +33,12 @@ const menuItems = [
 const AccountScreen: FC = () => {
   const navigation = useNavigation();
   const { user, setUser } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    setUser(null);
+    authStorage.removeToken();
+  };
+
   return (
     <CustomScreen>
       <View style={styles.container}>
@@ -72,7 +79,7 @@ const AccountScreen: FC = () => {
               size={35}
             />
           }
-          onPress={() => setUser(null)}
+          onPress={handleLogOut}
         />
       </View>
     </CustomScreen>

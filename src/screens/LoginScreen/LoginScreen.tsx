@@ -4,6 +4,7 @@ import authLogin from "../../api/auth";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import * as Yup from "yup";
 import jwtDecode from "jwt-decode";
+import authStorage from "../../auth/storage";
 
 import {
   CustomErrorMessage,
@@ -30,6 +31,7 @@ const LoginScreen: FC = () => {
     setLoginFailed(false);
     const user = jwtDecode(result.data);
     authContext.setUser(user);
+    authStorage.storeToken(result.data);
   };
 
   return (
