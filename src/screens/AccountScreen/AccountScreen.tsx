@@ -7,9 +7,7 @@ import colors from "../../config/colors";
 import CustomIcon from "../../components/CustomIcon/CustomIcon";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../navigation/routes";
-import { useContext } from "react";
-import AuthContext from "../../auth/context";
-import authStorage from "../../auth/storage";
+import useAuth from "../../hooks/useAuth";
 
 const menuItems = [
   {
@@ -32,12 +30,7 @@ const menuItems = [
 
 const AccountScreen: FC = () => {
   const navigation = useNavigation();
-  const { user, setUser } = useContext(AuthContext);
-
-  const handleLogOut = () => {
-    setUser(null);
-    authStorage.removeToken();
-  };
+  const { user, logOut } = useAuth();
 
   return (
     <CustomScreen>
@@ -79,7 +72,7 @@ const AccountScreen: FC = () => {
               size={35}
             />
           }
-          onPress={handleLogOut}
+          onPress={() => logOut()}
         />
       </View>
     </CustomScreen>
