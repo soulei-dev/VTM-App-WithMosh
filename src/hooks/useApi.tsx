@@ -1,4 +1,3 @@
-import { ApiResponse } from "apisauce";
 import { useState } from "react";
 
 interface ListingsProps {
@@ -8,20 +7,19 @@ interface ListingsProps {
   images: string[];
 }
 
-const useApi = (apiFunc: { (): Promise<ApiResponse<any, any>>; (): any }) => {
+const useApi = (apiFunc: any) => {
   const [data, setData] = useState<ListingsProps[]>([]);
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const request = async () => {
+  const request = async (...args: any) => {
     setLoading(true);
-    const response = await apiFunc();
+    const response = await apiFunc(...args);
     setLoading(false);
 
-    if (!response.ok) return setError(true);
-
-    setError(false);
+    setError(!response.ok);
     setData(response.data);
+    return response;
   };
 
   return { request, data, error, loading };

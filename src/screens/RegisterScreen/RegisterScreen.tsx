@@ -8,9 +8,11 @@ import {
 import { StyleSheet } from "react-native";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import * as Yup from "yup";
-import authRegister from "../../api/users";
-import authApi from "../../api/auth";
+import usersApi from "../../api/users";
+import authLogin from "../../api/auth";
 import useAuth from "../../hooks/useAuth";
+import useApi from "../../hooks/useApi";
+import ActivityIndicator from "../../components/ActivityIndicator/ActivityIndicator";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -19,12 +21,14 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterScreen: FC = () => {
+  const registerApi = useApi(usersApi.register);
+  const loginApi = useApi(authLogin.login);
   const auth = useAuth();
   const [error, setError] = useState<string>("");
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
   const handleSumbit = async (userInfo: any) => {
-    const result = await authRegister.register(userInfo);
+    const result = await registerApi.request(userInfo);
 
     if (!result.ok) {
       if (result.data) {
@@ -38,7 +42,7 @@ const RegisterScreen: FC = () => {
     }
     setIsRegistered(false);
 
-    const { data: authToken } = await authApi.login(
+    const { data: authToken } = await loginApi.request(
       userInfo.email,
       userInfo.password
     );
@@ -47,6 +51,7 @@ const RegisterScreen: FC = () => {
 
   return (
     <CustomScreen style={styles.container}>
+      <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
       <CustomForm
         onSubmit={handleSumbit}
         initialValues={{ name: "", email: "", password: "" }}
