@@ -3,8 +3,6 @@ import { Image, StyleSheet } from "react-native";
 import authLogin from "../../api/auth";
 import CustomScreen from "../../components/CustomScreen/CustomScreen";
 import * as Yup from "yup";
-import jwtDecode from "jwt-decode";
-import authStorage from "../../auth/storage";
 
 import {
   CustomErrorMessage,
@@ -12,8 +10,6 @@ import {
   CustomFormField,
   CustomSubmitButton,
 } from "../../components/forms";
-import { useContext } from "react";
-import AuthContext from "../../auth/context";
 import useAuth from "../../hooks/useAuth";
 
 const validationSchema = Yup.object().shape({
