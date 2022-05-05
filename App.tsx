@@ -13,16 +13,15 @@ const App: FC = () => {
   const [user, setUser] = useState<any>();
   const [isReady, setIsReady] = useState<boolean>(false);
 
-  const restoreToken = async () => {
-    const token = await authStorage.getToken();
-    if (!token) return;
-    setUser(jwtDecode(token));
+  const restoreUser = async () => {
+    const user = await authStorage.getUser();
+    if (user) setUser(user);
   };
 
   if (!isReady)
     return (
       <AppLoading
-        startAsync={restoreToken}
+        startAsync={restoreUser}
         onFinish={() => setIsReady(true)}
         onError={console.warn}
       />
