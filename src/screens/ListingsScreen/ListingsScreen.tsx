@@ -29,36 +29,38 @@ const ListingsScreen: FC<Props> = () => {
   }, []);
 
   return (
-    <CustomScreen style={styles.screen}>
-      {error && (
-        <>
-          <CustomText style={styles.errorMessage}>
-            Couldn't retrieve the listings.
-          </CustomText>
-          <CustomButton
-            label="Retry"
-            labelColor="white"
-            buttonColor={colors.primary}
-            onPress={loadListings}
-          />
-        </>
-      )}
+    <>
       <ActivityIndicator visible={loading} />
-      <FlatList
-        data={listings}
-        keyExtractor={(listing) => listing.id.toString()}
-        renderItem={({ item }: any) => (
-          <CustomCard
-            title={item.title}
-            price={item.price}
-            imageUrl={item.images[0].url}
-            onPress={() => navigation.navigate(routes.LISTING_DETAIL, item)}
-            thumbnailUrl={item.images[0].thumbnailUrl}
-          />
+      <CustomScreen style={styles.screen}>
+        {error && (
+          <>
+            <CustomText style={styles.errorMessage}>
+              Couldn't retrieve the listings.
+            </CustomText>
+            <CustomButton
+              label="Retry"
+              labelColor="white"
+              buttonColor={colors.primary}
+              onPress={loadListings}
+            />
+          </>
         )}
-        showsVerticalScrollIndicator={false}
-      />
-    </CustomScreen>
+        <FlatList
+          data={listings}
+          keyExtractor={(listing) => listing.id.toString()}
+          renderItem={({ item }: any) => (
+            <CustomCard
+              title={item.title}
+              price={item.price}
+              imageUrl={item.images[0].url}
+              onPress={() => navigation.navigate(routes.LISTING_DETAIL, item)}
+              thumbnailUrl={item.images[0].thumbnailUrl}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </CustomScreen>
+    </>
   );
 };
 

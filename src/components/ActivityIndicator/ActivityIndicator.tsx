@@ -9,7 +9,7 @@ type Props = {
 const ActivityIndicator: FC<Props> = ({ visible = false }) => {
   if (!visible) return null;
   return (
-    <View style={styles.lottieView}>
+    <View style={styles.overlay}>
       <Lottie
         autoSize
         autoPlay
@@ -21,8 +21,13 @@ const ActivityIndicator: FC<Props> = ({ visible = false }) => {
 };
 
 const styles = StyleSheet.create({
-  lottieView: {
-    flex: 1,
+  overlay: {
+    position: "absolute",
+    backgroundColor: "white",
+    height: "100%",
+    width: "100%",
+    zIndex: 1,
+    opacity: 0.8,
     alignItems: "center",
     justifyContent: "center",
   },

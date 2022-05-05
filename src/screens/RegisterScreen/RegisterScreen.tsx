@@ -50,41 +50,43 @@ const RegisterScreen: FC = () => {
   };
 
   return (
-    <CustomScreen style={styles.container}>
+    <>
       <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
-      <CustomForm
-        onSubmit={handleSumbit}
-        initialValues={{ name: "", email: "", password: "" }}
-        validationSchema={validationSchema}
-      >
-        <CustomFormField
-          icon="account"
-          name="name"
-          placeholder="Name"
-          autoCorrect={false}
-          autoCapitalize="sentences"
-        />
-        <CustomFormField
-          icon="email"
-          name="email"
-          keyboardType="email-address"
-          placeholder="Email"
-          autoCorrect={false}
-          autoCapitalize="none"
-          textContentType="emailAddress"
-        />
-        <CustomFormField
-          icon="lock"
-          name="password"
-          placeholder="Password"
-          autoCorrect={false}
-          secureTextEntry
-          autoCapitalize="none"
-        />
-        <CustomErrorMessage error={error} visible={isRegistered} />
-        <CustomSubmitButton title="S'enregistrer" />
-      </CustomForm>
-    </CustomScreen>
+      <CustomScreen style={styles.container}>
+        <CustomForm
+          onSubmit={handleSumbit}
+          initialValues={{ name: "", email: "", password: "" }}
+          validationSchema={validationSchema}
+        >
+          <CustomFormField
+            icon="account"
+            name="name"
+            placeholder="Name"
+            autoCorrect={false}
+            autoCapitalize="sentences"
+          />
+          <CustomFormField
+            icon="email"
+            name="email"
+            keyboardType="email-address"
+            placeholder="Email"
+            autoCorrect={false}
+            autoCapitalize="none"
+            textContentType="emailAddress"
+          />
+          <CustomFormField
+            icon="lock"
+            name="password"
+            placeholder="Password"
+            autoCorrect={false}
+            secureTextEntry
+            autoCapitalize="none"
+          />
+          <CustomErrorMessage error={error} visible={isRegistered} />
+          <CustomSubmitButton title="S'enregistrer" />
+        </CustomForm>
+      </CustomScreen>
+    </>
   );
 };
 
